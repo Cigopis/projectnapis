@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/registerkarController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/button.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/dashboardKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TextField.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/SlideButton.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ScrollBarCustom.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dashboardDirectors.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/JCheckBoxCustom.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/EventSwitchSelected.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/passField.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/loginKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/loginkarController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/karyawanController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TableStatus.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TextFieldSuggestionUI.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/salaryKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/PasswordField.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/registerKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dataKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/loginDirectors.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/addKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/resource/Desktop%20-%2022.png</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/registerdirekController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Connection/connect.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/registerDirectors.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/Combobox.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TableHeader.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/Table.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ModernScrollBarUI.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ComboSuggestionUI.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/SwitchButton.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/DashboardUtama.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/dataKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/RadioButtonCustom.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TextFieldSuggestion.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/absensiKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/AbsensiController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/logindirekController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/buttonradius.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ComboBoxSuggestion.java</file>
+        </group>
+    </open-files>
+</project-private>
