@@ -27,6 +27,20 @@ public class salaryKaryawan extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        rekapteam = new Component.buttonradius();
+        rekapacara = new Component.buttonradius();
+        rekapkeuangan = new Component.buttonradius();
+        finance = new Component.buttonradius();
+        dataclient = new Component.buttonradius();
+        dataacara = new Component.buttonradius();
+        datateam = new Component.buttonradius();
+        absensi = new Component.buttonradius();
+        salaryrecap = new Component.buttonradius();
+        salary = new Component.buttonradius();
+        karyawanrecap = new Component.buttonradius();
+        buttonradius2 = new Component.buttonradius();
+        karyawan = new Component.buttonradius();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -34,7 +48,93 @@ public class salaryKaryawan extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data salary (1).png"))); // NOI18N
+        rekapteam.setBackground(new java.awt.Color(220, 242, 241));
+        rekapteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap team.png"))); // NOI18N
+        rekapteam.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapteam.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapteam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 920, 120, 80));
+
+        rekapacara.setBackground(new java.awt.Color(220, 242, 241));
+        rekapacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap acara.png"))); // NOI18N
+        rekapacara.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapacara.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 920, 120, 80));
+
+        rekapkeuangan.setBackground(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap keuangan.png"))); // NOI18N
+        rekapkeuangan.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapkeuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 920, 140, 80));
+
+        finance.setBackground(new java.awt.Color(127, 199, 217));
+        finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
+        finance.setBorderColor(new java.awt.Color(127, 199, 217));
+        finance.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 910, -1, 80));
+
+        dataclient.setBackground(new java.awt.Color(127, 199, 217));
+        dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
+        dataclient.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataclient.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(dataclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 910, -1, 80));
+
+        dataacara.setBackground(new java.awt.Color(127, 199, 217));
+        dataacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data acara.png"))); // NOI18N
+        dataacara.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataacara.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(dataacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 910, 80, 80));
+
+        datateam.setBackground(new java.awt.Color(127, 199, 217));
+        datateam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data team.png"))); // NOI18N
+        datateam.setBorderColor(new java.awt.Color(127, 199, 217));
+        datateam.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(datateam, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 910, 80, 80));
+
+        absensi.setBackground(new java.awt.Color(127, 199, 217));
+        absensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
+        absensi.setBorderColor(new java.awt.Color(127, 199, 217));
+        absensi.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(absensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 910, 80, 80));
+
+        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
+        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
+        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryrecapActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salaryrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 920, 100, 60));
+
+        salary.setBackground(new java.awt.Color(220, 242, 241));
+        salary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary.png"))); // NOI18N
+        salary.setBorderColor(new java.awt.Color(220, 242, 241));
+        salary.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 920, 80, 60));
+
+        karyawanrecap.setBackground(new java.awt.Color(220, 242, 241));
+        karyawanrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap new.png"))); // NOI18N
+        karyawanrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        karyawanrecap.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(karyawanrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
+
+        buttonradius2.setBackground(new java.awt.Color(127, 199, 217));
+        buttonradius2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap.png"))); // NOI18N
+        buttonradius2.setBorderColor(new java.awt.Color(127, 199, 217));
+        buttonradius2.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(buttonradius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
+
+        karyawan.setBackground(new java.awt.Color(127, 199, 217));
+        karyawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan.png"))); // NOI18N
+        karyawan.setBorderColor(new java.awt.Color(127, 199, 217));
+        karyawan.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, 80, 80));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 910, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Desktop - 15.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -52,6 +152,10 @@ public class salaryKaryawan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salaryrecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryrecapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salaryrecapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,7 +194,21 @@ public class salaryKaryawan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Component.buttonradius absensi;
+    private Component.buttonradius buttonradius2;
+    private Component.buttonradius dataacara;
+    private Component.buttonradius dataclient;
+    private Component.buttonradius datateam;
+    private Component.buttonradius finance;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private Component.buttonradius karyawan;
+    private Component.buttonradius karyawanrecap;
+    private Component.buttonradius rekapacara;
+    private Component.buttonradius rekapkeuangan;
+    private Component.buttonradius rekapteam;
+    private Component.buttonradius salary;
+    private Component.buttonradius salaryrecap;
     // End of variables declaration//GEN-END:variables
 }
