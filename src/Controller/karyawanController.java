@@ -112,5 +112,62 @@ public class karyawanController {
     }
     
 }
+    String idkaryawan, jk;
+    public void idKaryawan(JTextField txtNoktp, JTextField txtName){
+         try{
+            java.sql.Connection kon = connect.koneksiDb();
+            Statement st = kon.createStatement();
+            String sql_tingkat = "SELECT * FROM karyawan WHERE name ='" + txtName.getText() + "' OR noktp ='"+txtNoktp.getText()+"'";
+            ResultSet rs = st.executeQuery(sql_tingkat);
+            while (rs.next()){
+                idkaryawan=rs.getString("id_karyawan");
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    public void edit(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPossition){
+        idKaryawan(txtNoktp,txtName);
+        if(txtNoktp.getText().equals("") && txtName.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Maaf Anda Belum Mengisi");
+     }else{
+            if(L.isSelected()){
+                jk ="L";
+            }else if(P.isSelected()){
+                jk="P";
+            }
+        int jawab = JOptionPane.showOptionDialog(null, 
+                    "Yakin Ingin Mengedit?", 
+                    "Peringatan", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+       
+        if(jawab == JOptionPane.NO_OPTION){
+            
+        }else{
+        try{
+           
+            Connection kon = connect.koneksiDb();
+            Statement st = kon.createStatement();
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = String.valueOf(date.format(tgl_birth.getDate()));
+            
+                String sql_up = "UPDATE karyawan SET noktp='" + txtNoktp.getText()
+                        + "',name='" + txtName.getText()
+                        + "', birthday = ' "+tanggal+ "',gender='" + jk
+                        +"' ,email='"+txtEmail.getText()+"',contact='"+txtContact.getText()+"',possition = '"+comboPossition.getSelectedItem().toString()+"' WHERE id_karyawan='"+idkaryawan+"'";
+                st.execute(sql_up);
+                JOptionPane.showMessageDialog(null, "Data Berhasil di Ubah");
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Gagal"+e);
+        }
+    }
+    }
+    }
+    
 
 }
