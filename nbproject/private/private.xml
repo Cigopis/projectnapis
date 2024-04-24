@@ -8,19 +8,26 @@
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/dashboardKaryawan.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TextField.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/SlideButton.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/teamController.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/salaryController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ScrollBarCustom.java</file>
-            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dashboardDirectors.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/JCheckBoxCustom.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dashboardDirectors.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/EventSwitchSelected.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/passField.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/loginKaryawan.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/loginkarController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/karyawanController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TableStatus.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dataAgenda.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/TextFieldSuggestionUI.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dataKlien.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/salaryKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/klienController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/PasswordField.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/agendaController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/registerKaryawan.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/lineChart.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dataKaryawan.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/loginDirectors.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/karyawan/addKaryawan.java</file>
@@ -43,6 +50,7 @@
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Controller/logindirekController.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/buttonradius.java</file>
             <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Component/ComboBoxSuggestion.java</file>
+            <file>file:/C:/Users/Yudo%20P/Documents/NetBeansProjects/AplikasiManagement/src/Model/direktur/dataTeam.java</file>
         </group>
     </open-files>
 </project-private>

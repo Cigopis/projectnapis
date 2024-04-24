@@ -55,7 +55,17 @@ public class AbsensiController {
     String waktu = now.format(timeFormatter);
     tglnow.setText(tanggal);
     timenow.setText(waktu);
+    tglnow.setFocusable(false);
+    timenow.setFocusable(false);
+    
 }
+   public void focuableField(JTextField name, JTextField nik, JTextField jabatan, JTextField jamabsen, JTextField status){
+    name.setFocusable(false);
+    nik.setFocusable(false);
+    jabatan.setFocusable(false);
+    jamabsen.setFocusable(false);
+    status.setFocusable(false);
+   }
 
 
 public void startTimer(final JTextField tglnow, final JTextField timenow) {
@@ -119,5 +129,11 @@ public void startTimer(final JTextField tglnow, final JTextField timenow) {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        id.setFocusable(false);
+        name.setFocusable(false);
+        nik.setFocusable(false);
+        jabatan.setFocusable(false);
+        jamabsen.setFocusable(false);
+        status.setFocusable(false);
     } 
 }

@@ -4,6 +4,10 @@
  */
 package Model.direktur;
 
+import Controller.salaryController;
+import java.awt.Font;
+import java.util.Locale;
+
 /**
  *
  * @author Yudo P
@@ -13,8 +17,13 @@ public class salaryKaryawan extends javax.swing.JFrame {
     /**
      * Creates new form salaryKaryawan
      */
-    public salaryKaryawan() {
+    private salaryController Control;
+    public salaryKaryawan(salaryController controller) {
+        this.Control = controller;
         initComponents();
+        Control.updateDateTime(tglnow);
+        Control.combox1(comboKaryawan);
+        Control.tabel(tabelSalary);
     }
 
     /**
@@ -26,7 +35,33 @@ public class salaryKaryawan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        combobox1 = new Component.Combobox();
         jPanel1 = new javax.swing.JPanel();
+        rekapteam = new Component.buttonradius();
+        rekapacara = new Component.buttonradius();
+        rekapkeuangan = new Component.buttonradius();
+        finance = new Component.buttonradius();
+        dataclient = new Component.buttonradius();
+        dataacara = new Component.buttonradius();
+        datateam = new Component.buttonradius();
+        absensi = new Component.buttonradius();
+        salaryrecap = new Component.buttonradius();
+        salary = new Component.buttonradius();
+        karyawanrecap = new Component.buttonradius();
+        buttonradius2 = new Component.buttonradius();
+        karyawan = new Component.buttonradius();
+        jLabel2 = new javax.swing.JLabel();
+        buttonradius1 = new Component.buttonradius();
+        comboAgenda = new Component.Combobox();
+        comboKaryawan = new Component.Combobox();
+        txtSubtotal = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        tglnow = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelSalary = new Component.Table();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -34,7 +69,201 @@ public class salaryKaryawan extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data salary (1).png"))); // NOI18N
+        rekapteam.setBackground(new java.awt.Color(220, 242, 241));
+        rekapteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap team.png"))); // NOI18N
+        rekapteam.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapteam.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapteam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 920, 120, 80));
+
+        rekapacara.setBackground(new java.awt.Color(220, 242, 241));
+        rekapacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap acara.png"))); // NOI18N
+        rekapacara.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapacara.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 920, 120, 80));
+
+        rekapkeuangan.setBackground(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap keuangan.png"))); // NOI18N
+        rekapkeuangan.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(rekapkeuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 920, 140, 80));
+
+        finance.setBackground(new java.awt.Color(127, 199, 217));
+        finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
+        finance.setBorderColor(new java.awt.Color(127, 199, 217));
+        finance.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 910, -1, 80));
+
+        dataclient.setBackground(new java.awt.Color(127, 199, 217));
+        dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
+        dataclient.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataclient.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(dataclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 910, -1, 80));
+
+        dataacara.setBackground(new java.awt.Color(127, 199, 217));
+        dataacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data acara.png"))); // NOI18N
+        dataacara.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataacara.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(dataacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 910, 80, 80));
+
+        datateam.setBackground(new java.awt.Color(127, 199, 217));
+        datateam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data team.png"))); // NOI18N
+        datateam.setBorderColor(new java.awt.Color(127, 199, 217));
+        datateam.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(datateam, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 910, 80, 80));
+
+        absensi.setBackground(new java.awt.Color(127, 199, 217));
+        absensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
+        absensi.setBorderColor(new java.awt.Color(127, 199, 217));
+        absensi.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(absensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 910, 80, 80));
+
+        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
+        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
+        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryrecapActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salaryrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 920, 100, 60));
+
+        salary.setBackground(new java.awt.Color(220, 242, 241));
+        salary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary.png"))); // NOI18N
+        salary.setBorderColor(new java.awt.Color(220, 242, 241));
+        salary.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 920, 80, 60));
+
+        karyawanrecap.setBackground(new java.awt.Color(220, 242, 241));
+        karyawanrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap new.png"))); // NOI18N
+        karyawanrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        karyawanrecap.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(karyawanrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
+
+        buttonradius2.setBackground(new java.awt.Color(127, 199, 217));
+        buttonradius2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap.png"))); // NOI18N
+        buttonradius2.setBorderColor(new java.awt.Color(127, 199, 217));
+        buttonradius2.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(buttonradius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
+
+        karyawan.setBackground(new java.awt.Color(127, 199, 217));
+        karyawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan.png"))); // NOI18N
+        karyawan.setBorderColor(new java.awt.Color(127, 199, 217));
+        karyawan.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, 80, 80));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 910, -1, -1));
+
+        buttonradius1.setBackground(new java.awt.Color(54, 84, 134));
+        buttonradius1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonradius1.setText("Create Salary");
+        buttonradius1.setToolTipText("");
+        buttonradius1.setBorderColor(new java.awt.Color(54, 84, 134));
+        buttonradius1.setColor(new java.awt.Color(54, 84, 134));
+        buttonradius1.setFont(new Font("Montserrat", Font.BOLD, 20));
+        buttonradius1.setRadius(18);
+        buttonradius1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonradius1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonradius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 390, 70));
+
+        comboAgenda.setBackground(new java.awt.Color(54, 84, 134));
+        comboAgenda.setBorder(null);
+        comboAgenda.setForeground(new java.awt.Color(255, 255, 255));
+        comboAgenda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih" }));
+        comboAgenda.setSelectedIndex(-1);
+        comboAgenda.setLabeText("Pilih");
+        comboAgenda.setLineColor(new java.awt.Color(54, 84, 134));
+        comboAgenda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAgendaItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(comboAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 170, 20));
+
+        comboKaryawan.setBackground(new java.awt.Color(54, 84, 134));
+        comboKaryawan.setBorder(null);
+        comboKaryawan.setForeground(new java.awt.Color(255, 255, 255));
+        comboKaryawan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih" }));
+        comboKaryawan.setSelectedIndex(-1);
+        comboKaryawan.setLabeText("Pilih");
+        comboKaryawan.setLineColor(new java.awt.Color(54, 84, 134));
+        comboKaryawan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboKaryawanItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(comboKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 170, 20));
+
+        txtSubtotal.setBackground(new java.awt.Color(235, 235, 235));
+        txtSubtotal.setFont(new Font("Montserrat", Font.PLAIN, 20));
+        txtSubtotal.setForeground(new java.awt.Color(54, 84, 134));
+        txtSubtotal.setBorder(null);
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 140, 30));
+
+        txtTotal.setBackground(new java.awt.Color(235, 235, 235));
+        txtTotal.setFont(new Font("Montserrat", Font.BOLD, 20));
+        txtTotal.setForeground(new java.awt.Color(54, 84, 134));
+        txtTotal.setBorder(null);
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 140, 30));
+
+        tglnow.setLocale(new Locale("id"));
+        tglnow.setBackground(new java.awt.Color(255, 255, 255));
+        tglnow.setForeground(new java.awt.Color(255, 255, 255));
+        tglnow.setDateFormatString("EEEE, dd MMMM yyyy");
+        tglnow.setFont(new Font("Montserrat", Font.PLAIN, 16));
+        tglnow.setOpaque(false);
+        jPanel1.add(tglnow, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, 210, 40));
+
+        tabelSalary.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabelSalary.setEnabled(false);
+        tabelSalary.setFocusable(false);
+        tabelSalary.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(tabelSalary);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 1110, 470));
+
+        jTextField1.setFont(new Font("Montserrat", Font.BOLD, 20));
+        jTextField1.setForeground(new java.awt.Color(54, 84, 134));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("0");
+        jTextField1.setBorder(null);
+        jTextField1.setRequestFocusEnabled(false);
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 40, 30));
+
+        jTextField2.setFont(new Font("Montserrat", Font.BOLD, 20));
+        jTextField2.setForeground(new java.awt.Color(54, 84, 134));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("0");
+        jTextField2.setBorder(null);
+        jTextField2.setRequestFocusEnabled(false);
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 30, 30));
+
+        jTextField3.setFont(new Font("Montserrat", Font.BOLD, 20));
+        jTextField3.setForeground(new java.awt.Color(54, 84, 134));
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.setText("0");
+        jTextField3.setBorder(null);
+        jTextField3.setRequestFocusEnabled(false);
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 720, 40, 30));
+
+        jLabel1.setBackground(new java.awt.Color(235, 235, 235));
+        jLabel1.setFont(new Font("Montserrat", Font.BOLD, 20));
+        jLabel1.setForeground(new java.awt.Color(54, 84, 134));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Desktop - 15.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -52,6 +281,25 @@ public class salaryKaryawan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salaryrecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryrecapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salaryrecapActionPerformed
+
+    private void comboKaryawanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboKaryawanItemStateChanged
+        // TODO add your handling code here:
+        Control.combox2(comboKaryawan, comboAgenda);
+    }//GEN-LAST:event_comboKaryawanItemStateChanged
+
+    private void comboAgendaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAgendaItemStateChanged
+        // TODO add your handling code here:
+        Control.getIdJmlKaryawan(comboAgenda, txtSubtotal, txtTotal);
+    }//GEN-LAST:event_comboAgendaItemStateChanged
+
+    private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
+        // TODO add your handling code here:
+        Control.cekandconfirmDataSalary(comboKaryawan, comboAgenda, txtSubtotal, txtTotal, tglnow);
+    }//GEN-LAST:event_buttonradius1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,17 +328,47 @@ public class salaryKaryawan extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new salaryKaryawan().setVisible(true);
+                salaryController control = new salaryController();
+                salaryKaryawan frame = new salaryKaryawan(control);
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Component.buttonradius absensi;
+    private Component.buttonradius buttonradius1;
+    private Component.buttonradius buttonradius2;
+    private Component.Combobox comboAgenda;
+    private Component.Combobox comboKaryawan;
+    private Component.Combobox combobox1;
+    private Component.buttonradius dataacara;
+    private Component.buttonradius dataclient;
+    private Component.buttonradius datateam;
+    private Component.buttonradius finance;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private Component.buttonradius karyawan;
+    private Component.buttonradius karyawanrecap;
+    private Component.buttonradius rekapacara;
+    private Component.buttonradius rekapkeuangan;
+    private Component.buttonradius rekapteam;
+    private Component.buttonradius salary;
+    private Component.buttonradius salaryrecap;
+    private Component.Table tabelSalary;
+    private com.toedter.calendar.JDateChooser tglnow;
+    private javax.swing.JTextField txtSubtotal;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

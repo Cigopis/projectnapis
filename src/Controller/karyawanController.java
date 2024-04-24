@@ -1,6 +1,7 @@
 package Controller;
 
 import Connection.connect;
+import Model.karyawan.dataKaryawan;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class karyawanController {
 
     }
 
-    public void add(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPosition) {
+    public void add(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPosition,JTable tabelKaryawan) {
         if (L.isSelected()) {
             gender = "L";
         } else if (P.isSelected()) {
@@ -39,6 +40,7 @@ public class karyawanController {
             prs.setString(8, comboPosition.getSelectedItem().toString());
             prs.execute();
             JOptionPane.showMessageDialog(null, "Data Berhasil Dimasukkan");
+            tabel(tabelKaryawan);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage());
         }

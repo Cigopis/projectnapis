@@ -25,13 +25,11 @@ public class dataKaryawan extends javax.swing.JFrame {
     /**
      * Creates new form dataKaryawan
      */
-    public dataKaryawan() {
+    private karyawanController control;
+    public dataKaryawan(karyawanController Controller) {
     initComponents();
-    karyawanController Control = new karyawanController();
-    Control.tabel(tabelKaryawan);
-    
-    
-   
+    this.control = Controller;
+    control.tabel(tabelKaryawan);
 }
 
 
@@ -263,7 +261,9 @@ try {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dataKaryawan().setVisible(true);
+                karyawanController control = new karyawanController();
+                dataKaryawan frame = new dataKaryawan(control);
+                frame.setVisible(true);
             }
         });
     }
@@ -277,6 +277,6 @@ try {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private Component.Table tabelKaryawan;
+    public Component.Table tabelKaryawan;
     // End of variables declaration//GEN-END:variables
 }

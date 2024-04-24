@@ -6,6 +6,7 @@ package Model.karyawan;
 
 import Connection.*;
 import Controller.*;
+import java.awt.Font;
 import java.awt.event.*;
 import java.io.*;
 import java.sql.*;
@@ -37,6 +38,7 @@ public class absensiKaryawan extends javax.swing.JFrame {
         initComponents();
         control.updateDateTime(tglnow, timenow);
         control.startTimer(tglnow, timenow);
+        control.focuableField(name, nik, jabatan, jamabsen, status);
     }
 
     
@@ -66,33 +68,61 @@ public class absensiKaryawan extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        name.setText("jTextField1");
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 300, 50));
+        name.setBackground(new java.awt.Color(127, 199, 217));
+        name.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        name.setForeground(new java.awt.Color(255, 255, 255));
+        name.setBorder(null);
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 310, 50));
 
-        nik.setText("jTextField1");
-        getContentPane().add(nik, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 480, 300, 40));
+        nik.setBackground(new java.awt.Color(127, 199, 217));
+        nik.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        nik.setForeground(new java.awt.Color(255, 255, 255));
+        nik.setBorder(null);
+        getContentPane().add(nik, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 480, 310, 40));
 
-        jabatan.setText("jTextField1");
-        getContentPane().add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, 300, 40));
+        jabatan.setBackground(new java.awt.Color(127, 199, 217));
+        jabatan.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        jabatan.setForeground(new java.awt.Color(255, 255, 255));
+        jabatan.setBorder(null);
+        getContentPane().add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, 310, 40));
 
-        jamabsen.setText("jTextField1");
-        getContentPane().add(jamabsen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 580, 300, 40));
+        jamabsen.setBackground(new java.awt.Color(127, 199, 217));
+        jamabsen.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        jamabsen.setForeground(new java.awt.Color(255, 255, 255));
+        jamabsen.setBorder(null);
+        getContentPane().add(jamabsen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 580, 310, 40));
 
-        status.setText("jTextField1");
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 630, 300, 40));
+        status.setBackground(new java.awt.Color(127, 199, 217));
+        status.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        status.setForeground(new java.awt.Color(255, 255, 255));
+        status.setBorder(null);
+        status.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 630, 310, 40));
 
+        id.setBackground(new java.awt.Color(127, 199, 217));
+        id.setFont(new Font("Montserrat", Font.PLAIN, 25));
+        id.setForeground(new java.awt.Color(255, 255, 255));
+        id.setBorder(null);
         id.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idKeyReleased(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 370, 300, 40));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 370, 310, 40));
 
-        tglnow.setText("jTextField1");
-        getContentPane().add(tglnow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 100, 250, 50));
+        tglnow.setFont(new Font("Montserrat", Font.BOLD, 26));
+        tglnow.setForeground(new java.awt.Color(127, 199, 217));
+        tglnow.setBorder(null);
+        getContentPane().add(tglnow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 100, 260, 50));
 
-        timenow.setText("jTextField1");
-        getContentPane().add(timenow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 150, 310, 70));
+        timenow.setFont(new Font("Montserrat", Font.BOLD, 74));
+        timenow.setForeground(new java.awt.Color(127, 199, 217));
+        timenow.setBorder(null);
+        getContentPane().add(timenow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 150, 300, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -112,15 +142,14 @@ public class absensiKaryawan extends javax.swing.JFrame {
         control.getIdteam(id, name, nik, jabatan, jamabsen, status);
         control.simpanDataKeExcel(name.getText(), tglnow.getText(), status.getText());
         id.setFocusable(false);
-        name.setFocusable(false);
-        nik.setFocusable(false);
-        jabatan.setFocusable(false);
-        jamabsen.setFocusable(false);
-        status.setFocusable(false);
     }
 
 
     }//GEN-LAST:event_idKeyReleased
+
+    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusActionPerformed
 
     /**
      * @param args the command line arguments

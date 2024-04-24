@@ -267,4 +267,75 @@ public class teamController {
         }
     }
      }
+    
+    DefaultTableModel tabelteam = new DefaultTableModel();
+   
+    DefaultTableModel tabelteamdetail = new DefaultTableModel();
+   
+    public void tampilTeam(JTable tabelTeam){
+        tabelTeam.setModel(tabelteam);
+        tabelteam.addColumn("Nama Team");
+        tabelteam.addColumn("Deskripsi");
+        tabelteam.addColumn("Kategori");
+        String query = "SELECT team.name,information, team_category.name FROM (team inner join team_category ON team.id_kat_team = team_category.id_kat_team) ORDER BY id_team ASC";
+
+    try {
+        Connection conn = connect.koneksiDb(); // Memanggil koneksi
+        Statement sttmnt = conn.createStatement(); // Membuat statement
+        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
+
+        int no = 1; // Inisialisasi nomer baris
+        while (rslt.next()) {
+            // Menampung data sementara
+            String d1 = rslt.getString(1);
+            String d2 = rslt.getString(2);
+            String d3 = rslt.getString(3);
+            
+            // Menambahkan semua data ke dalam array
+            String[] data = {d1, d2, d3};
+            // Menambahkan baris sesuai dengan data yang tersimpan di array
+            tabelteam.addRow(data);
+        }
+        // Mengeset nilai yang ditampung agar muncul di tabel
+        tabelTeam.setModel(tabelteam);
+
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    }
+    public void tampilTeamdetail(JTable tabelTeamdetail){
+     tabelTeamdetail.setModel(tabelteamdetail);
+        tabelteamdetail.addColumn("Nama Karyawan");
+        tabelteamdetail.addColumn("Posisi");
+        tabelteamdetail.addColumn("Dalam Team");
+    String query = "SELECT karyawan.name, karyawan.possition, team.name " +
+                   "FROM karyawan " +
+                   "LEFT JOIN team_details ON karyawan.id_karyawan = team_details.id_karyawan " +
+                   "LEFT JOIN team ON team_details.id_team = team.id_team " +
+                   "ORDER BY karyawan.id_karyawan ASC;";
+
+    try {
+        Connection conn = connect.koneksiDb(); // Memanggil koneksi
+        Statement sttmnt = conn.createStatement(); // Membuat statement
+        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
+
+        while (rslt.next()) {
+            String d1 = rslt.getString(1);
+            String d2 = rslt.getString(2);
+            String d3 = rslt.getString(3);
+            if (d3 == null || d3.isEmpty()) {
+                String teamstatus = "Tidak Bergabung";
+                String[] data = {d1, d2, teamstatus};
+                tabelteamdetail.addRow(data);
+            } else {
+                String[] data = {d1, d2, d3};
+                tabelteamdetail.addRow(data);
+            }
+        }
+        tabelTeamdetail.setModel(tabelteamdetail); // Set the model after iterating through the result set
+
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}
 }

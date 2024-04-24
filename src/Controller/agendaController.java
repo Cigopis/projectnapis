@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -310,4 +311,48 @@ private void updateFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextFi
     updatetotalFinance();
 }
 
+
+    public void tabel(JTable tabelAgenda) {
+    // Mengatur model tabel
+    tabelAgenda.setModel(tabel);
+    
+    // Menambahkan kolom pada model tabel
+    tabel.addColumn("NO");
+    tabel.addColumn("NAME PROJECT");
+    tabel.addColumn("CATEGORY PROJECT");
+    tabel.addColumn("INFORMATION");
+    tabel.addColumn("DATE START");
+    tabel.addColumn("DATE END");
+    
+    // Mengosongkan tabel sebelum menambahkan data baru
+    tabel.setRowCount(0);
+   
+    String query = "SELECT * FROM agenda INNER JOIN agenda_category ON agenda.id_kat_agenda = agenda_category.id_kat_agenda ORDER BY id_agenda ASC";
+
+    try {
+        Connection conn = connect.koneksiDb(); // Memanggil koneksi
+        Statement sttmnt = conn.createStatement(); // Membuat statement
+        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
+
+        int no = 1; // Inisialisasi nomor baris
+        while (rslt.next()) {
+            // Menampung data sementara
+            String d1 = rslt.getString("agenda.name");
+            String d2 = rslt.getString("agenda_category.name");
+            String d3 = rslt.getString("agenda.information");
+            String d4 = rslt.getString("agenda.date_start");
+            String d5 = rslt.getString("agenda.date_end");
+
+            // Menambahkan nomor baris ke data
+            String nomer = String.valueOf(no++);
+            // Menambahkan semua data ke dalam array
+            String[] data = {nomer, d1, d2, d3, d4, d5};
+            // Menambahkan baris sesuai dengan data yang tersimpan di array
+            tabel.addRow(data);
+        }
+    } catch (Exception e) {
+        System.out.println("Error while populating table: " + e.getMessage());
+    }
+    
+}
 }
