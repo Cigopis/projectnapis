@@ -5,7 +5,11 @@
 package Controller;
 
 import Connection.connect;
+import static Controller.AbsensiController.FILE_PATH;
 import com.toedter.calendar.JDateChooser;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,9 +20,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -28,7 +38,8 @@ public class agendaController {
     DefaultTableModel tabel = new DefaultTableModel();
     String idcategory,idteam,idklien,idagenda;
     int total,subtotal,sumsubtotal;
-    private void combox1(JComboBox<String> comboKat){
+    public static final String FILE_PATH = "C:\\Users\\Yudo P\\Documents\\absensi\\formatinvoice.xlsx";
+    public void combox1(JComboBox<String> comboKat){
         try{
             Connection kon = connect.koneksiDb();
             Statement st = kon.createStatement();
@@ -58,7 +69,7 @@ public class agendaController {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    private void combox2(JComboBox<String> comboNamaInstansi){
+    public void combox2(JComboBox<String> comboNamaInstansi){
         try{
             Connection kon = connect.koneksiDb();
             Statement st = kon.createStatement();
@@ -88,7 +99,7 @@ public class agendaController {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    private void combox3(JComboBox<String> comboNamaTeam){
+    public void combox3(JComboBox<String> comboNamaTeam){
         try{
             Connection kon = connect.koneksiDb();
             Statement st = kon.createStatement();
@@ -123,11 +134,11 @@ public class agendaController {
         tgl_mulai.setDate(now);    
     }
     
-    private void addAgenda(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam){
-        getIdkategori(comboKat);
+    public void addAgenda(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam){
+        try{
+            getIdkategori(comboKat);
         getIdTeam(comboNamaTeam);
         getIdKlien(comboNamaInstansi);
-        try{
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             String tgl_start = String.valueOf(date.format(tgl_mulai.getDate()));
             String tgl_end = String.valueOf(date.format(tgl_selesai.getDate()));
@@ -163,9 +174,9 @@ public class agendaController {
     }
 }
 
-private void addFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam) {
-    getIdAgenda(txtNamaAcara);
+public void addFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam) {
     try {
+        getIdAgenda(txtNamaAcara);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String tgl_start = dateFormat.format(tgl_mulai.getDate());
         Connection kon = connect.koneksiDb();
@@ -228,7 +239,7 @@ private void getsumsubtotal() {
     }
 }
 
-private void updatetotalFinance() {
+public void updatetotalFinance() {
     try {
         getsumsubtotal();
         Connection kon = connect.koneksiDb();
@@ -251,7 +262,7 @@ private void updatetotalFinance() {
         JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage());
     }
 }
- private void updateAgenda(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam){
+ public void updateAgenda(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai, JComboBox<String> comboKat, JComboBox<String> comboNamaInstansi,JComboBox<String> comboNamaTeam){
         getIdkategori(comboKat);
         getIdTeam(comboNamaTeam);
         getIdKlien(comboNamaInstansi);
@@ -279,7 +290,7 @@ private void updatetotalFinance() {
     }
      
 
-private void updateFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai) {
+public void updateFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextField txtBiaya, JDateChooser tgl_mulai, JDateChooser tgl_selesai) {
     getIdAgenda(txtNamaAcara);
     try {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -310,4 +321,157 @@ private void updateFinance(JTextField txtNamaAcara,JTextArea areaCatatan,JTextFi
     updatetotalFinance();
 }
 
+
+    public void tabel(JTable tabelAgenda) {
+    // Mengatur model tabel
+    tabelAgenda.setModel(tabel);
+    
+    // Menambahkan kolom pada model tabel
+    tabel.addColumn("NO");
+    tabel.addColumn("NAME PROJECT");
+    tabel.addColumn("CATEGORY PROJECT");
+    tabel.addColumn("INFORMATION");
+    tabel.addColumn("DATE START");
+    tabel.addColumn("DATE END");
+    
+    // Mengosongkan tabel sebelum menambahkan data baru
+    tabel.setRowCount(0);
+   
+    String query = "SELECT * FROM agenda INNER JOIN agenda_category ON agenda.id_kat_agenda = agenda_category.id_kat_agenda ORDER BY id_agenda ASC";
+
+    try {
+        Connection conn = connect.koneksiDb(); // Memanggil koneksi
+        Statement sttmnt = conn.createStatement(); // Membuat statement
+        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
+
+        int no = 1; // Inisialisasi nomor baris
+        while (rslt.next()) {
+            // Menampung data sementara
+            String d1 = rslt.getString("agenda.name");
+            String d2 = rslt.getString("agenda_category.name");
+            String d3 = rslt.getString("agenda.information");
+            String d4 = rslt.getString("agenda.date_start");
+            String d5 = rslt.getString("agenda.date_end");
+
+            // Menambahkan nomor baris ke data
+            String nomer = String.valueOf(no++);
+            // Menambahkan semua data ke dalam array
+            String[] data = {nomer, d1, d2, d3, d4, d5};
+            // Menambahkan baris sesuai dengan data yang tersimpan di array
+            tabel.addRow(data);
+        }
+    } catch (Exception e) {
+        System.out.println("Error while populating table: " + e.getMessage());
+    }
 }
+   
+       public void addAbsenceToSheet(XSSFSheet sheet, JComboBox<String> comboNamaInstansi, JTextArea alamat, String nomor, JDateChooser tanggal, JTextField txtTotalbiaya) {
+    // Mengambil baris yang telah ditentukan
+    int rowNumKlien = 22; // Baris untuk klien (G23)
+    int rowNumAlamat = 25; // Baris untuk alamat (G26)
+    int colNumKlien = 6; // Kolom untuk klien (G)
+    int colNumAlamat = 6; // Kolom untuk alamat (G)
+    int colNumNomor = 13; // Kolom untuk nomor (N)
+    int colNumTanggal = 13; // Kolom untuk tanggal (N)
+    int colNumharga = 14;
+    int rowjml = 51;
+    int rowppn = 52;
+    int rowtot = 53;
+    int rowpmebulatan= 54;
+    // Membuat cell style untuk mengatur tampilan sel
+    XSSFCellStyle style = sheet.getWorkbook().createCellStyle();
+
+    // Memasukkan data klien
+    XSSFRow rowKlien = sheet.getRow(rowNumKlien);
+    if (rowKlien == null) {
+        rowKlien = sheet.createRow(rowNumKlien);
+    }
+    rowKlien.createCell(colNumKlien).setCellValue(comboNamaInstansi.getSelectedItem().toString());
+    rowKlien.getCell(colNumKlien).setCellStyle(style);
+
+    // Memasukkan data alamat
+    XSSFRow rowAlamat = sheet.getRow(rowNumAlamat);
+    if (rowAlamat == null) {
+        rowAlamat = sheet.createRow(rowNumAlamat);
+    }
+    rowAlamat.createCell(colNumAlamat).setCellValue(alamat.getText());
+    rowAlamat.getCell(colNumAlamat).setCellStyle(style);
+
+    // Memasukkan data nomor
+    XSSFRow rowNomor = sheet.getRow(rowNumKlien);
+    if (rowNomor == null) {
+        rowNomor = sheet.createRow(rowNumKlien);
+    }
+    nomor = "KP-1.2/CV.MKN-18.1/IV/2024";
+    rowNomor.createCell(colNumNomor).setCellValue(nomor);
+    rowNomor.getCell(colNumNomor).setCellStyle(style);
+
+    // Memasukkan data tanggal
+    XSSFRow rowTanggal = sheet.getRow(rowNumAlamat);
+    if (rowTanggal == null) {
+        rowTanggal = sheet.createRow(rowNumAlamat);
+    }
+     XSSFRow rowTotalBiaya = sheet.getRow(rowjml);
+    if (rowTotalBiaya == null) {
+        rowTotalBiaya = sheet.createRow(rowjml);
+    }
+    rowTotalBiaya.createCell(colNumharga).setCellValue(txtTotalbiaya.getText());
+    rowTotalBiaya.getCell(colNumharga).setCellStyle(style);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String tgl = dateFormat.format(tanggal.getDate());
+    rowTanggal.createCell(colNumTanggal).setCellValue(tgl);
+    rowTanggal.getCell(colNumTanggal).setCellStyle(style);
+}
+ public void simpanDataKeExcel(JComboBox<String> comboNamaInstansi, JTextArea alamat, String nomor, JDateChooser tanggal, JTextField txtTotalbiaya) {
+    try {
+        // Generate nama file Excel baru
+        String newFilePath = generateNewFilePath(comboNamaInstansi);
+        File newFile = new File(FILE_PATH);
+        
+        // Membuat workbook baru jika file belum ada, atau menggunakan yang sudah ada jika sudah ada
+        XSSFWorkbook workbook;
+        if (newFile.exists()) {
+            FileInputStream fis = new FileInputStream(FILE_PATH);
+            workbook = new XSSFWorkbook(fis);
+        } else {
+            workbook = new XSSFWorkbook();
+        }
+
+        XSSFSheet sheet = workbook.getSheetAt(0); // Mengambil sheet pertama
+
+        // Ambil data dari comboNamaInstansi dan JTextArea alamat
+        String namaInstansi = (String) comboNamaInstansi.getSelectedItem();
+        String alamatInstansi = alamat.getText();
+
+        // Ambil data dari JTextArea nomor
+        
+        // Ambil data dari JDateChooser tanggal
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String tanggalText = sdf.format(tanggal.getDate());
+
+        String totalBiaya = txtTotalbiaya.getText();
+
+        // Add the total price to the Excel sheet
+        addAbsenceToSheet(sheet, comboNamaInstansi, alamat, nomor, tanggal, txtTotalbiaya);
+
+
+        // Simpan workbook ke file Excel baru
+        FileOutputStream outputStream = new FileOutputStream(newFilePath);
+        workbook.write(outputStream);
+        workbook.close();
+        outputStream.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage());
+    }
+}
+
+private String generateNewFilePath(JComboBox<String> comboNamaInstansi) {
+    // Generate nama file baru berdasarkan timestamp
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    String timestamp = sdf.format(new Date());
+    return FILE_PATH + "invoice_" + comboNamaInstansi.getSelectedItem().toString() + "_" + timestamp + ".xlsx";
+}
+
+
+}
+

@@ -4,6 +4,8 @@
  */
 package Model.karyawan;
 
+import Model.direktur.*;
+import Model.karyawan.*;
 import Controller.karyawanController;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -217,7 +219,9 @@ public class addKaryawan extends javax.swing.JPanel {
     private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
         // TODO add your handling code here:
         if(check.isSelected()){
-            Control.add(txtRfid, txtNoktp, txtName, tgl_birth, L, P, txtEmail, txtContact, comboJabatan);
+            karyawanController control = new karyawanController();
+            dataKaryawan frame = new dataKaryawan(control);
+           Control.add(txtRfid, txtNoktp, txtName, tgl_birth, L, P, txtEmail, txtContact, comboJabatan, frame.tabelKaryawan);
         Control.clear(txtRfid, txtNoktp, txtName, tgl_birth,jk, txtEmail, txtContact, comboJabatan);
         }else{
             JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);

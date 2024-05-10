@@ -9,8 +9,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import Connection.*;
+import Controller.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -23,69 +34,25 @@ public class dataKaryawan extends javax.swing.JFrame {
     /**
      * Creates new form dataKaryawan
      */
-    public dataKaryawan() {
-        initComponents();
-        tabelKaryawan.setModel(tabel);
-        tabel.addColumn("No");
-        tabel.addColumn("No KTP");
-        tabel.addColumn("Nama Karyawan");
-        tabel.addColumn("Umur");
-        tabel.addColumn("Jenis Kelamin");
-        tabel.addColumn("Alamat");
-        tabel.addColumn("Email");
-        tabel.addColumn("Contact");
-        tabel.addColumn("Posisi");
-        tabel();
-    }
-    DefaultTableModel tabel = new DefaultTableModel();
-    String gender;
-    
-    
-    
-     
-    
-    // Method untuk mengisi tabel
-    private void tabel() {
-    String query = "SELECT noktp,name,birthday,gender,address,email,contact,possition FROM karyawan ORDER BY id_karyawan ASC";
-
-    try {
-        Connection conn = connect.koneksiDb(); // Memanggil koneksi
-        Statement sttmnt = conn.createStatement(); // Membuat statement
-        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
-
-        int no = 1; // Inisialisasi nomer baris
-        while (rslt.next()) {
-            // Menampung data sementara
-            String d1 = rslt.getString(1);
-            String d2 = rslt.getString(2);
-            String d3 = rslt.getString(3);
-            String d4 = rslt.getString(4);
-            if (d4.equals("L")) {
-                gender = "Laki-Laki";
-            } else if (d4.equals("P")) {
-                gender = "Perempuan";
-            }
-            String d5 = rslt.getString(5);
-            String d6 = rslt.getString(6);
-            String d7 = rslt.getString(7);
-            String d8 = rslt.getString(8);
-
-            // Mengonversi hash kode menjadi string
-           
-            // Menambahkan nomer baris ke data
-            String nomer = String.valueOf(no++);
-            // Menambahkan semua data ke dalam array
-            String[] data = {nomer, d1, d2, d3, gender, d5, d6, d7, d8};
-            // Menambahkan baris sesuai dengan data yang tersimpan di array
-            tabel.addRow(data);
-        }
-        // Mengeset nilai yang ditampung agar muncul di tabel
-        tabelKaryawan.setModel(tabel);
-
-    } catch (Exception e) {
-        System.out.println(e);
-    }
+     private karyawanController control;
+     private String user;
+    public dataKaryawan(karyawanController Controller) {
+    initComponents();
+    this.control = Controller;
+    control.headerTabel(tabelKaryawan);
+    control.tabel(tabelKaryawan);
+    control.startTimer(tabelKaryawan);
 }
+    public dataKaryawan(karyawanController Controller, String username) {
+    initComponents();
+    this.control = Controller;
+    this.user = username;
+    control.headerTabel(tabelKaryawan);
+    control.tabel(tabelKaryawan);
+    control.startTimer(tabelKaryawan);
+}
+  
+
 
     
         
@@ -104,7 +71,7 @@ public class dataKaryawan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        DesktopPane = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelKaryawan = new Component.Table();
         jLabel5 = new javax.swing.JLabel();
@@ -116,12 +83,27 @@ public class dataKaryawan extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         buttonradius2 = new Component.buttonradius();
+        karyawan = new Component.buttonradius();
+        kembali = new Component.buttonradius();
+        buttonradius3 = new Component.buttonradius();
+        salary = new Component.buttonradius();
+        salaryrecap = new Component.buttonradius();
+        jLabel6 = new javax.swing.JLabel();
+        absensi = new Component.buttonradius();
+        datateam = new Component.buttonradius();
+        dataacara = new Component.buttonradius();
+        dataclient = new Component.buttonradius();
+        finance = new Component.buttonradius();
+        rekapkeuangan = new Component.buttonradius();
+        rekapacara = new Component.buttonradius();
+        rekapteam = new Component.buttonradius();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        DesktopPane.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        DesktopPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelKaryawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,65 +119,185 @@ public class dataKaryawan extends javax.swing.JFrame {
         tabelKaryawan.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tabelKaryawan);
 
-        jDesktopPane1.add(jScrollPane1);
-        jScrollPane1.setBounds(160, 240, 1600, 470);
+        DesktopPane.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 1600, 470));
 
         jLabel5.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(54, 84, 134));
         jLabel5.setText("Tambah Karyawan");
-        jDesktopPane1.add(jLabel5);
-        jLabel5.setBounds(1460, 750, 230, 30);
+        DesktopPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 750, 230, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Group 103.png"))); // NOI18N
-        jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(1700, 740, 48, 50);
+        DesktopPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1700, 740, -1, 50));
 
         buttonradius1.setBorder(null);
         buttonradius1.setBorderColor(new java.awt.Color(255, 255, 255));
-        jDesktopPane1.add(buttonradius1);
-        buttonradius1.setBounds(1430, 730, 330, 70);
+        buttonradius1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonradius1ActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(buttonradius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 730, 330, 70));
 
         button2.setBackground(new java.awt.Color(220, 242, 241));
         button2.setBorder(null);
         button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Group.png"))); // NOI18N
         button2.setBorderColor(new java.awt.Color(220, 242, 241));
         button2.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(button2);
-        button2.setBounds(1720, 180, 40, 50);
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 180, 40, 50));
 
         button1.setBackground(new java.awt.Color(220, 242, 241));
         button1.setBorder(null);
         button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Rectangle 51.png"))); // NOI18N
         button1.setBorderColor(new java.awt.Color(220, 242, 241));
         button1.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(button1);
-        button1.setBounds(1680, 180, 40, 50);
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1680, 180, 40, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/person.png"))); // NOI18N
-        jDesktopPane1.add(jLabel2);
-        jLabel2.setBounds(1640, 40, 40, 60);
+        DesktopPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 40, -1, 60));
 
         jLabel3.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(54, 84, 134));
         jLabel3.setText("Yudo Lasprianto");
-        jDesktopPane1.add(jLabel3);
-        jLabel3.setBounds(1690, 50, 110, 16);
+        DesktopPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1690, 50, 110, -1));
 
         jTextField1.setText("Karyawan");
         jTextField1.setBorder(null);
-        jDesktopPane1.add(jTextField1);
-        jTextField1.setBounds(1690, 70, 110, 20);
+        DesktopPane.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1690, 70, 110, 20));
 
         buttonradius2.setBorder(null);
         buttonradius2.setBorderColor(new java.awt.Color(54, 84, 134));
-        jDesktopPane1.add(buttonradius2);
-        buttonradius2.setBounds(1620, 40, 270, 60);
+        DesktopPane.add(buttonradius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 40, 270, 60));
+
+        karyawan.setBackground(new java.awt.Color(127, 199, 217));
+        karyawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan.png"))); // NOI18N
+        karyawan.setBorderColor(new java.awt.Color(127, 199, 217));
+        karyawan.setColor(new java.awt.Color(127, 199, 217));
+        karyawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                karyawanActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, -1, 80));
+
+        kembali.setBackground(new java.awt.Color(220, 242, 241));
+        kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/kembali.png"))); // NOI18N
+        kembali.setBorderColor(new java.awt.Color(220, 242, 241));
+        kembali.setColor(new java.awt.Color(220, 242, 241));
+        kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 40, 40));
+
+        buttonradius3.setBackground(new java.awt.Color(127, 199, 217));
+        buttonradius3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap.png"))); // NOI18N
+        buttonradius3.setBorderColor(new java.awt.Color(127, 199, 217));
+        buttonradius3.setColor(new java.awt.Color(127, 199, 217));
+        DesktopPane.add(buttonradius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, -1, 80));
+
+        salary.setBackground(new java.awt.Color(220, 242, 241));
+        salary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary.png"))); // NOI18N
+        salary.setBorderColor(new java.awt.Color(220, 242, 241));
+        salary.setColor(new java.awt.Color(220, 242, 241));
+        salary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 920, 80, -1));
+
+        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
+        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
+        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+        DesktopPane.add(salaryrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 920, 100, 60));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
+        DesktopPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 910, -1, -1));
+
+        absensi.setBackground(new java.awt.Color(127, 199, 217));
+        absensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
+        absensi.setBorderColor(new java.awt.Color(127, 199, 217));
+        absensi.setColor(new java.awt.Color(127, 199, 217));
+        absensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                absensiActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(absensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 910, 80, 80));
+
+        datateam.setBackground(new java.awt.Color(127, 199, 217));
+        datateam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data team.png"))); // NOI18N
+        datateam.setBorderColor(new java.awt.Color(127, 199, 217));
+        datateam.setColor(new java.awt.Color(127, 199, 217));
+        datateam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datateamActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(datateam, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 910, 80, 80));
+
+        dataacara.setBackground(new java.awt.Color(127, 199, 217));
+        dataacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data acara.png"))); // NOI18N
+        dataacara.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataacara.setColor(new java.awt.Color(127, 199, 217));
+        dataacara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataacaraActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(dataacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 910, 80, 80));
+
+        dataclient.setBackground(new java.awt.Color(127, 199, 217));
+        dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
+        dataclient.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataclient.setColor(new java.awt.Color(127, 199, 217));
+        dataclient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataclientActionPerformed(evt);
+            }
+        });
+        DesktopPane.add(dataclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 910, -1, 80));
+
+        finance.setBackground(new java.awt.Color(127, 199, 217));
+        finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
+        finance.setBorderColor(new java.awt.Color(127, 199, 217));
+        finance.setColor(new java.awt.Color(127, 199, 217));
+        DesktopPane.add(finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 910, -1, 80));
+
+        rekapkeuangan.setBackground(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap keuangan.png"))); // NOI18N
+        rekapkeuangan.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapkeuangan.setColor(new java.awt.Color(220, 242, 241));
+        DesktopPane.add(rekapkeuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 920, 140, 80));
+
+        rekapacara.setBackground(new java.awt.Color(220, 242, 241));
+        rekapacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap acara.png"))); // NOI18N
+        rekapacara.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapacara.setColor(new java.awt.Color(220, 242, 241));
+        DesktopPane.add(rekapacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 920, 120, 80));
+
+        rekapteam.setBackground(new java.awt.Color(220, 242, 241));
+        rekapteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap team.png"))); // NOI18N
+        rekapteam.setBorderColor(new java.awt.Color(220, 242, 241));
+        rekapteam.setColor(new java.awt.Color(220, 242, 241));
+        DesktopPane.add(rekapteam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 930, 120, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Desktop - 7.png"))); // NOI18N
-        jDesktopPane1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1920, 1080);
+        DesktopPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(DesktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -203,6 +305,189 @@ public class dataKaryawan extends javax.swing.JFrame {
     private void tabelKaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKaryawanMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelKaryawanMouseClicked
+
+    private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame frame = new JInternalFrame("frame Karyawan", true, true, true, true);
+
+// framekan komponen-komponen ke dalam JInternalFrame
+karyawanController control = new karyawanController();
+addKaryawan panel = new addKaryawan(control);
+panel.add(new JLabel("Ini adalah panel yang mengambang"));
+frame.add(panel);
+
+// Atur ukuran JInternalFrame
+frame.setSize(657,796);
+
+// Mendapatkan ukuran layar
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+int screenWidth = (int) screenSize.getWidth();
+int screenHeight = (int) screenSize.getHeight();
+
+// Mendapatkan posisi x dan y untuk menempatkan internal frame di tengah layar
+int x = (screenWidth - frame.getWidth()) / 2;
+int y = (screenHeight - frame.getHeight()) / 2;
+
+// Set lokasi internal frame di tengah layar
+frame.setLocation(x, y);
+
+// Tampilkan JInternalFrame
+frame.setVisible(true);
+
+// framekan JInternalFrame ke dalam JDesktopPane
+DesktopPane.add(frame);
+
+// Agar JInternalFrame bisa ditampilkan di depan
+frame.toFront();
+
+try {
+    frame.setSelected(true);
+} catch (java.beans.PropertyVetoException e) {
+    System.out.println("Exception: " + e.getMessage());
+} 
+    }//GEN-LAST:event_buttonradius1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        // TODO add your handling code here:
+       int row = tabelKaryawan.getSelectedRow();
+if (row >= 0) {
+    JInternalFrame frame = new JInternalFrame("Ubah Karyawan", true, true, true, true);
+
+    // Frame the components into JInternalFrame
+    karyawanController control = new karyawanController();
+    updateKaryawan panel = new updateKaryawan(control);
+    panel.add(new JLabel("Ini adalah panel yang mengambang"));
+
+    panel.txtRfid.setText(tabelKaryawan.getValueAt(row, 0).toString());
+    panel.txtNoktp.setText(tabelKaryawan.getValueAt(row, 1).toString());
+    panel.txtName.setText(tabelKaryawan.getValueAt(row, 2).toString());
+
+    // Assuming the date string is in a format that can be parsed by SimpleDateFormat
+   // Assuming the date string is in the format "yyyy-MM-dd"
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+try {
+    Date birthDate = dateFormat.parse(tabelKaryawan.getValueAt(row, 3).toString());
+    panel.tgl_birth.setDate(birthDate);
+} catch (ParseException ex) {
+    // Handle parsing exception
+    ex.printStackTrace();
+}
+
+    String gender = tabelKaryawan.getValueAt(row, 4).toString();
+    if (gender.equalsIgnoreCase("laki-laki")) {
+        panel.L.setSelected(true);
+    } else if (gender.equalsIgnoreCase("perempuan")) {
+        panel.P.setSelected(true);
+    }
+
+    panel.txtEmail.setText(tabelKaryawan.getValueAt(row, 5).toString());
+    panel.txtContact.setText(tabelKaryawan.getValueAt(row, 6).toString());
+    panel.comboJabatan.setSelectedItem(tabelKaryawan.getValueAt(row, 7).toString());
+
+    frame.add(panel);
+
+    // Set the size of JInternalFrame
+    frame.setSize(657, 796);
+
+    // Get screen size
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int screenWidth = (int) screenSize.getWidth();
+    int screenHeight = (int) screenSize.getHeight();
+
+    // Get x and y position to center the internal frame on the screen
+    int x = (screenWidth - frame.getWidth()) / 2;
+    int y = (screenHeight - frame.getHeight()) / 2;
+    // Set the location of the internal frame to the center of the screen
+    frame.setLocation(x, y);
+
+    // Show JInternalFrame
+    frame.setVisible(true);
+
+    // Frame the JInternalFrame into JDesktopPane
+    DesktopPane.add(frame);
+
+    // Bring the JInternalFrame to the front
+    frame.toFront();
+
+    try {
+        frame.setSelected(true);
+    } catch (java.beans.PropertyVetoException e) {
+        System.out.println("Exception: " + e.getMessage());
+    }
+} else {
+   JOptionPane.showMessageDialog(null, "PILIH DATA DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
+}
+
+    }//GEN-LAST:event_button2ActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        control.delete(tabelKaryawan);
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void karyawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karyawanActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        karyawanController karControl = new karyawanController();
+        dataKaryawan frame = new dataKaryawan(karControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_karyawanActionPerformed
+
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        agendaController agenControl = new agendaController();
+        logindirekController loginControl = new logindirekController();
+        dashboardDirectors frame = new dashboardDirectors(user,loginControl,agenControl);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_kembaliActionPerformed
+
+    private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
+        // TODO add your handling code here:
+        user="";
+        salaryController salaryControl = new salaryController();
+        salaryKaryawan frame = new salaryKaryawan(salaryControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_salaryActionPerformed
+
+    private void absensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absensiActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        AbsensiController absenControl = new AbsensiController();
+        absensiKaryawan frame = new absensiKaryawan(absenControl);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_absensiActionPerformed
+
+    private void datateamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datateamActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        teamController teamControl = new teamController();
+        dataTeam frame = new dataTeam(teamControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_datateamActionPerformed
+
+    private void dataacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataacaraActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        agendaController agenControl = new agendaController();
+        dataAgenda frame = new dataAgenda(agenControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataacaraActionPerformed
+
+    private void dataclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataclientActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        klienController klienControl = new klienController();
+        dataKlien frame = new dataKlien(klienControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataclientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,28 +516,46 @@ public class dataKaryawan extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dataKaryawan().setVisible(true);
+                 karyawanController control = new karyawanController();
+                dataKaryawan frame = new dataKaryawan(control);
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane DesktopPane;
+    private Component.buttonradius absensi;
     private Component.button button1;
     private Component.button button2;
     private Component.buttonradius buttonradius1;
     private Component.buttonradius buttonradius2;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private Component.buttonradius buttonradius3;
+    private Component.buttonradius dataacara;
+    private Component.buttonradius dataclient;
+    private Component.buttonradius datateam;
+    private Component.buttonradius finance;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private Component.Table tabelKaryawan;
+    private Component.buttonradius karyawan;
+    private Component.buttonradius kembali;
+    private Component.buttonradius rekapacara;
+    private Component.buttonradius rekapkeuangan;
+    private Component.buttonradius rekapteam;
+    private Component.buttonradius salary;
+    private Component.buttonradius salaryrecap;
+    public Component.Table tabelKaryawan;
     // End of variables declaration//GEN-END:variables
 }

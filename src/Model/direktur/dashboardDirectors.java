@@ -5,6 +5,7 @@
 package Model.direktur;
 
 import Connection.connect;
+import Controller.*;
 import java.sql.*;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
@@ -18,55 +19,31 @@ public class dashboardDirectors extends javax.swing.JFrame {
     /**
      * Creates new form dashboardDirectors
      */
-    private String username;
-    public dashboardDirectors() {
+     private String user;
+    private logindirekController control;
+    private agendaController controlagenda;
+    public dashboardDirectors(logindirekController controller,agendaController controlleragenda) {
         initComponents();
+        this.control = controller;
+        this.controlagenda = controlleragenda;
+        control.getPemasukan(txtPenghasilan);
+        control.getPengeluaran(txtPengeluaran);
         setExtendedState(MAXIMIZED_BOTH);
-        editablefield();
-        setPenghasilan();
+        control.closeFocus(txtPenghasilan, txtPengeluaran, txtNamekaryawan);
+        controlagenda.tabel(tabelAgenda);
     }
-    public dashboardDirectors(String username) {
+    public dashboardDirectors(String username,logindirekController controller,agendaController controlleragenda) {
         initComponents();
-        this.username = username;
+        this.user = username;
+        this.control = controller;
+        this.controlagenda = controlleragenda;
+        control.getPemasukan(txtPenghasilan);
+        control.getPengeluaran(txtPengeluaran);
         txtNamekaryawan.setText(username.toUpperCase()); 
-        editablefield();
-        setPenghasilan();
+        control.closeFocus(txtPenghasilan, txtPengeluaran, txtNamekaryawan);
+        setExtendedState(MAXIMIZED_BOTH);
+        controlagenda.tabel(tabelAgenda);
     }
-    int penghasilan,pengeluaran;
-    private void editablefield(){
-        txtPenghasilan.setEditable(false);
-        txtPenghasilan.setFocusable(false);
-        txtPengeluaran.setEditable(false);
-        txtNamekaryawan.setEditable(false);
-        txtPengeluaran.setFocusable(false);
-        txtNamekaryawan.setFocusable(false);
-    }
-    private void setPenghasilan() {
-    try {
-        Connection kon = connect.koneksiDb();
-        Statement st = kon.createStatement();
-        String sql_tingkat = "SELECT * FROM finance_income";
-        ResultSet rs = st.executeQuery(sql_tingkat);
-        
-        int penghasilan = 0; // Initialize penghasilan
-        
-        while (rs.next()) {
-            penghasilan += rs.getInt("total"); // Accumulate total penghasilan
-        }
-        
-        rs.close();
-        st.close();
-        kon.close(); // Close database connection
-        
-        // Format penghasilan using DecimalFormat
-        DecimalFormat formatter = new DecimalFormat("#,##0");
-        String formattedPenghasilan = formatter.format(penghasilan);
-        
-        txtPenghasilan.setText(formattedPenghasilan); // Set formatted penghasilan to text field
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    }
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +59,7 @@ public class dashboardDirectors extends javax.swing.JFrame {
         txtPengeluaran = new javax.swing.JTextField();
         txtPenghasilan = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        table3 = new Component.Table();
+        tabelAgenda = new Component.Table();
         button2 = new Component.button();
         button1 = new Component.button();
         person = new Component.buttonradius();
@@ -157,7 +134,7 @@ public class dashboardDirectors extends javax.swing.JFrame {
         });
         jPanel1.add(txtPenghasilan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 280, 40));
 
-        table3.setModel(new javax.swing.table.DefaultTableModel(
+        tabelAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -168,9 +145,9 @@ public class dashboardDirectors extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(table3);
+        jScrollPane3.setViewportView(tabelAgenda);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 1190, 450));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 1200, 450));
 
         button2.setBorder(null);
         button2.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,11 +328,16 @@ public class dashboardDirectors extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboardDirectors().setVisible(true);
+                logindirekController control = new logindirekController();
+                agendaController controlagenda = new agendaController();
+                dashboardDirectors frame = new dashboardDirectors(control,controlagenda);
+                frame.setVisible(true);
             }
         });
     }
@@ -382,7 +364,7 @@ public class dashboardDirectors extends javax.swing.JFrame {
     private Component.buttonradius rekapteam;
     private Component.buttonradius salary;
     private Component.buttonradius salaryrecap;
-    private Component.Table table3;
+    private Component.Table tabelAgenda;
     private javax.swing.JTextField txtNamekaryawan;
     private javax.swing.JTextField txtNamekaryawan1;
     private javax.swing.JTextField txtPengeluaran;

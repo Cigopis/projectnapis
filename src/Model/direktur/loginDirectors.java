@@ -9,6 +9,7 @@ package Model.direktur;
 import Connection.*;
 import Controller.logindirekController;
 import Controller.registerdirekController;
+import java.awt.Color;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -24,16 +25,35 @@ public class loginDirectors extends javax.swing.JFrame {
      * Creates new form loginDirectors
      */
     private logindirekController control;
+    private boolean isAlternateImage;
     public loginDirectors(logindirekController controller) {
+    this.control = controller;
+    initComponents();
+    setExtendedState(MAXIMIZED_BOTH);
+    }
+
+    public loginDirectors(logindirekController controller, boolean isAlternateImage) {
         this.control = controller;
+        this.isAlternateImage = isAlternateImage;
         initComponents();
+        loadBackgroundImage();
         setExtendedState(MAXIMIZED_BOTH);
     }
-    public loginDirectors() {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-    }
+
+    private void loadBackgroundImage() {
+    String imagePath = isAlternateImage ? "src\\resource\\Desktop - 23.png" : "src\\resource\\loginDirector (1).jpg";
+    ImageIcon icon = new ImageIcon(imagePath);
+    jLabel1.setIcon(icon);
     
+    // Mengatur warna latar belakang berdasarkan kondisi
+    Color background = isAlternateImage ? new Color(11, 24, 91) : new Color(127, 199, 217);
+    
+    // Mengatur warna latar belakang untuk komponen teks
+    txtEmail.setBackground(background);
+    txtPass.setBackground(background);
+}
+
+
 ////     String username,password,level;
 ////     private String hashPassword(String password) throws NoSuchAlgorithmException {
 ////        try {
@@ -101,6 +121,7 @@ public class loginDirectors extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtEmail.setBackground(new java.awt.Color(127, 199, 217));
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setBorder(null);
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +131,7 @@ public class loginDirectors extends javax.swing.JFrame {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(1363, 412, 370, 40));
 
         txtPass.setBackground(new java.awt.Color(127, 199, 217));
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setBorder(null);
         jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 500, 370, 40));
 
@@ -129,7 +151,6 @@ public class loginDirectors extends javax.swing.JFrame {
         buttonradius1.setColorClick(new java.awt.Color(127, 199, 217));
         buttonradius1.setColorOver(new java.awt.Color(220, 242, 241));
         buttonradius1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        buttonradius1.setRadius(50);
         buttonradius1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonradius1ActionPerformed(evt);

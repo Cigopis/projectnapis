@@ -4,6 +4,12 @@
  */
 package Model.direktur;
 
+import Controller.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+
 /**
  *
  * @author LENOVO
@@ -13,10 +19,19 @@ public class dataKlien extends javax.swing.JFrame {
     /**
      * Creates new form dataKlien
      */
-    public dataKlien() {
+    private klienController control;
+    private String user;
+    public dataKlien(klienController controller) {
+        this.control = controller;
         initComponents();
+        control.tabel(tabelklien);
     }
-
+     public dataKlien(klienController controller,String username) {
+        this.control = controller;
+        initComponents();
+        this.user = username;
+        control.tabel(tabelklien);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +41,7 @@ public class dataKlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        DesktopPane = new javax.swing.JDesktopPane();
         hapus1 = new Component.buttonradius();
         hapus = new Component.buttonradius();
         tampil = new Component.buttonradius();
@@ -46,131 +61,431 @@ public class dataKlien extends javax.swing.JFrame {
         buttonradius2 = new Component.buttonradius();
         karyawan = new Component.buttonradius();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelklien = new Component.Table();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         hapus1.setBackground(new java.awt.Color(127, 199, 217));
         hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp edit.png"))); // NOI18N
         hapus1.setBorderColor(new java.awt.Color(127, 199, 217));
         hapus1.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(hapus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 720, 60, 60));
 
         hapus.setBackground(new java.awt.Color(127, 199, 217));
         hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp delete.png"))); // NOI18N
         hapus.setBorderColor(new java.awt.Color(127, 199, 217));
         hapus.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 720, 60, 60));
 
         tampil.setBackground(new java.awt.Color(127, 199, 217));
         tampil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp view.png"))); // NOI18N
         tampil.setBorderColor(new java.awt.Color(127, 199, 217));
         tampil.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(tampil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 720, 60, 60));
 
         tambahteam.setBackground(new java.awt.Color(127, 199, 217));
         tambahteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tambah klien.png"))); // NOI18N
         tambahteam.setBorderColor(new java.awt.Color(127, 199, 217));
         tambahteam.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(tambahteam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 720, 310, 60));
+        tambahteam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahteamActionPerformed(evt);
+            }
+        });
 
         kembali.setBackground(new java.awt.Color(220, 242, 241));
         kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/kembali.png"))); // NOI18N
         kembali.setBorderColor(new java.awt.Color(220, 242, 241));
         kembali.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 40, 40));
+        kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliActionPerformed(evt);
+            }
+        });
 
         rekapteam.setBackground(new java.awt.Color(220, 242, 241));
         rekapteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap team.png"))); // NOI18N
         rekapteam.setBorderColor(new java.awt.Color(220, 242, 241));
         rekapteam.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(rekapteam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 920, 120, 80));
 
         rekapacara.setBackground(new java.awt.Color(220, 242, 241));
         rekapacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap acara.png"))); // NOI18N
         rekapacara.setBorderColor(new java.awt.Color(220, 242, 241));
         rekapacara.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(rekapacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 920, 120, 80));
 
         rekapkeuangan.setBackground(new java.awt.Color(220, 242, 241));
         rekapkeuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rekap keuangan.png"))); // NOI18N
         rekapkeuangan.setBorderColor(new java.awt.Color(220, 242, 241));
         rekapkeuangan.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(rekapkeuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 920, 140, 80));
 
         finance.setBackground(new java.awt.Color(127, 199, 217));
         finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
         finance.setBorderColor(new java.awt.Color(127, 199, 217));
         finance.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 910, -1, 80));
 
         dataclient.setBackground(new java.awt.Color(127, 199, 217));
         dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
         dataclient.setBorderColor(new java.awt.Color(127, 199, 217));
         dataclient.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(dataclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 910, -1, 80));
+        dataclient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataclientActionPerformed(evt);
+            }
+        });
 
         dataacara.setBackground(new java.awt.Color(127, 199, 217));
         dataacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data acara.png"))); // NOI18N
         dataacara.setBorderColor(new java.awt.Color(127, 199, 217));
         dataacara.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(dataacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 910, 80, 80));
+        dataacara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataacaraActionPerformed(evt);
+            }
+        });
 
         datateam.setBackground(new java.awt.Color(127, 199, 217));
         datateam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data team.png"))); // NOI18N
         datateam.setBorderColor(new java.awt.Color(127, 199, 217));
         datateam.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(datateam, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 910, 80, 80));
+        datateam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datateamActionPerformed(evt);
+            }
+        });
 
         absensi.setBackground(new java.awt.Color(127, 199, 217));
         absensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
         absensi.setBorderColor(new java.awt.Color(127, 199, 217));
         absensi.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(absensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 910, 80, 80));
+        absensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                absensiActionPerformed(evt);
+            }
+        });
 
         salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
         salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
         salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
         salaryrecap.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(salaryrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 920, 100, 60));
 
         salary.setBackground(new java.awt.Color(220, 242, 241));
         salary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary.png"))); // NOI18N
         salary.setBorderColor(new java.awt.Color(220, 242, 241));
         salary.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 920, 80, 60));
+        salary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryActionPerformed(evt);
+            }
+        });
 
         karyawanrecap.setBackground(new java.awt.Color(220, 242, 241));
         karyawanrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap new.png"))); // NOI18N
         karyawanrecap.setBorderColor(new java.awt.Color(220, 242, 241));
         karyawanrecap.setColor(new java.awt.Color(220, 242, 241));
-        jDesktopPane1.add(karyawanrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
+        karyawanrecap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                karyawanrecapActionPerformed(evt);
+            }
+        });
 
         buttonradius2.setBackground(new java.awt.Color(127, 199, 217));
         buttonradius2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap.png"))); // NOI18N
         buttonradius2.setBorderColor(new java.awt.Color(127, 199, 217));
         buttonradius2.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(buttonradius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, 190, 80));
 
         karyawan.setBackground(new java.awt.Color(127, 199, 217));
         karyawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan.png"))); // NOI18N
         karyawan.setBorderColor(new java.awt.Color(127, 199, 217));
         karyawan.setColor(new java.awt.Color(127, 199, 217));
-        jDesktopPane1.add(karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, 80, 80));
+        karyawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                karyawanActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
-        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 910, -1, -1));
+
+        tabelklien.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelklien);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client form.png"))); // NOI18N
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
+        DesktopPane.setLayer(hapus1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(hapus, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(tampil, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(tambahteam, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(kembali, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(rekapteam, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(rekapacara, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(rekapkeuangan, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(finance, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(dataclient, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(dataacara, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(datateam, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(absensi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(salaryrecap, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(salary, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(karyawanrecap, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(buttonradius2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(karyawan, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout DesktopPaneLayout = new javax.swing.GroupLayout(DesktopPane);
+        DesktopPane.setLayout(DesktopPaneLayout);
+        DesktopPaneLayout.setHorizontalGroup(
+            DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1140, 1140, 1140)
+                .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1620, 1620, 1620)
+                .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1490, 1490, 1490)
+                .addComponent(tambahteam, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jLabel2))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1470, 1470, 1470)
+                .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1300, 1300, 1300)
+                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1750, 1750, 1750)
+                .addComponent(rekapteam, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1000, 1000, 1000)
+                .addComponent(dataclient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(karyawanrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1230, 1230, 1230)
+                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1370, 1370, 1370)
+                .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1710, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(590, 590, 590)
+                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
+        DesktopPaneLayout.setVerticalGroup(
+            DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(tambahteam, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(jLabel2))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(rekapteam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(dataclient, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(karyawanrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(910, 910, 910)
+                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
+
+        getContentPane().add(DesktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        agendaController agenControl = new agendaController();
+        logindirekController loginControl = new logindirekController();
+        dashboardDirectors frame = new dashboardDirectors(user,loginControl,agenControl);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_kembaliActionPerformed
+
+    private void karyawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karyawanActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        karyawanController karControl = new karyawanController();
+        dataKaryawan frame = new dataKaryawan(karControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_karyawanActionPerformed
+
+    private void karyawanrecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karyawanrecapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_karyawanrecapActionPerformed
+
+    private void absensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absensiActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        AbsensiController absenControl = new AbsensiController();
+        absensiKaryawan frame = new absensiKaryawan(absenControl);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_absensiActionPerformed
+
+    private void datateamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datateamActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        teamController teamControl = new teamController();
+        dataTeam frame = new dataTeam(teamControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_datateamActionPerformed
+
+    private void dataacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataacaraActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        agendaController agenControl = new agendaController();
+        dataAgenda frame = new dataAgenda(agenControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataacaraActionPerformed
+
+    private void dataclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataclientActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        klienController klienControl = new klienController();
+        dataKlien frame = new dataKlien(klienControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataclientActionPerformed
+
+    private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
+        // TODO add your handling code here:
+         user="";
+        salaryController salaryControl = new salaryController();
+        salaryKaryawan frame = new salaryKaryawan(salaryControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_salaryActionPerformed
+
+    private void tambahteamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahteamActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame tambah = new JInternalFrame("Tambah Karyawan", true, true, true, true);
+
+// Tambahkan komponen-komponen ke dalam JInternalFrame
+klienController control = new klienController();
+addKlien panel = new addKlien(control);
+panel.add(new JLabel("Ini adalah panel yang mengambang"));
+tambah.add(panel);
+
+// Atur ukuran JInternalFrame
+tambah.setSize(649,796);
+
+// Mendapatkan ukuran layar
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+int screenWidth = (int) screenSize.getWidth();
+int screenHeight = (int) screenSize.getHeight();
+
+// Mendapatkan posisi x dan y untuk menempatkan internal frame di tengah layar
+int x = (screenWidth - tambah.getWidth()) / 2;
+int y = (screenHeight - tambah.getHeight()) / 2;
+
+// Set lokasi internal frame di tengah layar
+tambah.setLocation(x, y);
+
+// Tampilkan JInternalFrame
+tambah.setVisible(true);
+
+// Tambahkan JInternalFrame ke dalam JDesktopPane
+DesktopPane.add(tambah);
+
+// Agar JInternalFrame bisa ditampilkan di depan
+tambah.toFront();
+
+try {
+    tambah.setSelected(true);
+} catch (java.beans.PropertyVetoException e) {
+    System.out.println("Exception: " + e.getMessage());
+} 
+    }//GEN-LAST:event_tambahteamActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,16 +513,20 @@ public class dataKlien extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(dataKlien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dataKlien().setVisible(true);
+                 klienController control = new klienController();
+                dataKlien frame = new dataKlien(control);
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane DesktopPane;
     private Component.buttonradius absensi;
     private Component.buttonradius buttonradius2;
     private Component.buttonradius dataacara;
@@ -216,9 +535,9 @@ public class dataKlien extends javax.swing.JFrame {
     private Component.buttonradius finance;
     private Component.buttonradius hapus;
     private Component.buttonradius hapus1;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private Component.buttonradius karyawan;
     private Component.buttonradius karyawanrecap;
     private Component.buttonradius kembali;
@@ -227,6 +546,7 @@ public class dataKlien extends javax.swing.JFrame {
     private Component.buttonradius rekapteam;
     private Component.buttonradius salary;
     private Component.buttonradius salaryrecap;
+    private Component.Table tabelklien;
     private Component.buttonradius tambahteam;
     private Component.buttonradius tampil;
     // End of variables declaration//GEN-END:variables

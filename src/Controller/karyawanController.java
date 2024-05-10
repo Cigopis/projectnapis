@@ -1,7 +1,10 @@
 package Controller;
 
 import Connection.connect;
+import Model.karyawan.dataKaryawan;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class karyawanController {
     private String gender;
-
+    private Timer timer;
     public karyawanController() {
 
     }
 
-    public void add(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPosition) {
+    public void add(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPosition,JTable tabelKaryawan) {
         if (L.isSelected()) {
             gender = "L";
         } else if (P.isSelected()) {
@@ -39,6 +42,7 @@ public class karyawanController {
             prs.setString(8, comboPosition.getSelectedItem().toString());
             prs.execute();
             JOptionPane.showMessageDialog(null, "Data Berhasil Dimasukkan");
+            tabel(tabelKaryawan);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage());
         }
@@ -57,12 +61,11 @@ public class karyawanController {
 
     DefaultTableModel tabel = new DefaultTableModel();
 
-    public void tabel(JTable tabelKaryawan) {
-    // Mengatur model tabel
-    tabelKaryawan.setModel(tabel);
+    public void headerTabel(JTable tabelKaryawan){
+        tabelKaryawan.setModel(tabel);
     
     // Menambahkan kolom pada model tabel
-    tabel.addColumn("ID Karyawan");
+    tabel.addColumn("NO RFID");
     tabel.addColumn("No KTP");
     tabel.addColumn("Nama Karyawan");
     tabel.addColumn("Tanggal Lahir");
@@ -70,11 +73,16 @@ public class karyawanController {
     tabel.addColumn("Email");
     tabel.addColumn("Contact");
     tabel.addColumn("Posisi");
+    }
+    public void tabel(JTable tabelKaryawan) {
+    // Mengatur model tabel
     
     // Mengosongkan tabel sebelum menambahkan data baru
-    tabel.setRowCount(0);
-   
-    String query = "SELECT noktp, name, birthday, gender, email, contact, possition FROM karyawan ORDER BY id_karyawan ASC";
+    int row = tabelKaryawan.getRowCount();
+        for(int a = 0 ; a < row ; a++){
+            tabel.removeRow(0);
+        }
+    String query = "SELECT norfid,noktp, name, birthday, gender, email, contact, possition FROM karyawan ORDER BY id_karyawan ASC";
 
     try {
         Connection conn = connect.koneksiDb(); // Memanggil koneksi
@@ -89,21 +97,22 @@ public class karyawanController {
             String d3 = rslt.getString(3);
             String d4 = rslt.getString(4);
             String gender;
-            if (d4.equals("L")) {
+            
+            String d5 = rslt.getString(5);
+            if (d5.equals("L")) {
                 gender = "Laki-Laki";
-            } else if (d4.equals("P")) {
+            } else if (d5.equals("P")) {
                 gender = "Perempuan";
             } else {
                 gender = "Undefined";
             }
-            String d5 = rslt.getString(5);
             String d6 = rslt.getString(6);
             String d7 = rslt.getString(7);
+             String d8 = rslt.getString(8);
 
             // Menambahkan nomor baris ke data
-            String nomer = String.valueOf(no++);
             // Menambahkan semua data ke dalam array
-            String[] data = {nomer, d1, d2, d3, gender, d5, d6, d7};
+            String[] data = {d1, d2, d3, d4, gender, d6, d7, d8};
             // Menambahkan baris sesuai dengan data yang tersimpan di array
             tabel.addRow(data);
         }
@@ -128,7 +137,7 @@ public class karyawanController {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    public void edit(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPossition){
+    public void edit(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPossition,JTable tabelKaryawan){
         idKaryawan(txtNoktp,txtName);
         if(txtNoktp.getText().equals("") && txtName.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Maaf Anda Belum Mengisi");
@@ -165,9 +174,45 @@ public class karyawanController {
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Gagal"+e);
         }
+        tabel(tabelKaryawan);
     }
     }
     }
-    
+    public void delete(JTable tabelKaryawan){
+        int row = tabelKaryawan.getSelectedRow();
+        int update= JOptionPane.showOptionDialog(null,"apakah yakin hapus data?","Hapus Data",
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+            if(update == JOptionPane.YES_OPTION){
+            try{
+                 Connection kon = connect.koneksiDb();
+                 Statement st = kon.createStatement();
+                 String sql_del = "DELETE from karyawan WHERE noktp='"+tabelKaryawan.getValueAt(row, 1).toString()+"' OR name='"+tabelKaryawan.getValueAt(row, 2).toString()+"'";
+                 st.execute(sql_del);
+                 JOptionPane.showMessageDialog(null, "Data Berhasil Di Hapus");
+                 tabel(tabelKaryawan);
+             }
+             catch(Exception e){
+                 JOptionPane.showMessageDialog(null, "Gagal"+e);
+             }
+            tabel(tabelKaryawan);
+        }
+    }
+    public void startTimer(final JTable tabelKaryawan) {
+    timer = new Timer(5000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Pass the text fields to updateDateTime
+            tabel(tabelKaryawan);
+        }
+    });
+    timer.start();
+}
+
+
+    public void stopTimer() {
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+    }
 
 }

@@ -5,6 +5,7 @@
 package Controller;
 
 import Connection.connect;
+import Model.karyawan.loginKaryawan;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -54,6 +55,9 @@ public class registerkarController {
                     statement.setString(2, hashPassword(pass));
                     statement.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Register Berhasil");
+                    loginkarController control = new loginkarController();
+                    loginKaryawan frame = new loginKaryawan(control);
+                    frame.setVisible(true);
                 }
             } catch (SQLException | NoSuchAlgorithmException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
