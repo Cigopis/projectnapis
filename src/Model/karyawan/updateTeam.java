@@ -5,30 +5,32 @@
 package Model.karyawan;
 
 import Model.direktur.*;
-import Model.karyawan.*;
-import Model.direktur.*;
 import Controller.teamController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Yudo P
  */
-public class addTeam extends javax.swing.JPanel {
+public class updateTeam extends javax.swing.JPanel {
 
     /**
      * Creates new form addTeam
      */
-    private teamController control;
-    DefaultTableModel tabelkarya = new DefaultTableModel();
-    public addTeam(teamController controller) {
-        this.control = controller;
+    public teamController control;
+    private String user;
+    public updateTeam(teamController controller) {
         initComponents();
+        control = controller;
         control.combox1(comboCategory);
-        control.headerTabel(tabelkarya);
+    }
+    public updateTeam(teamController controller,String username) {
+        initComponents();
+        control = controller;
+        user=username;
+        control.combox1(comboCategory);
     }
 
     /**
@@ -46,14 +48,16 @@ public class addTeam extends javax.swing.JPanel {
         check = new Component.JCheckBoxCustom();
         txtnamaTeam = new javax.swing.JTextField();
         buttonradius3 = new Component.buttonradius();
+        jmlKaryawan = new Component.Spinner();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelKaryawan = new Component.Table();
-        jmlKaryawan = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
 
         comboCategory.setBackground(new java.awt.Color(54, 84, 134));
         comboCategory.setBorder(null);
         comboCategory.setForeground(new java.awt.Color(255, 255, 255));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PILIH" }));
+        comboCategory.setLabeText("");
 
         txtInformation.setBackground(new java.awt.Color(54, 84, 134));
         txtInformation.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,6 +105,12 @@ public class addTeam extends javax.swing.JPanel {
             }
         });
 
+        jmlKaryawan.setBackground(new java.awt.Color(54, 84, 134));
+        jmlKaryawan.setBorder(null);
+        jmlKaryawan.setForeground(new java.awt.Color(255, 255, 255));
+        jmlKaryawan.setLabelText("");
+
+        tabelKaryawan.setAutoCreateRowSorter(true);
         tabelKaryawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -121,19 +131,11 @@ public class addTeam extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jmlKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(buttonradius3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(230, 230, 230)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(230, 230, 230)
-                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(txtInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(290, 290, 290)
                 .addComponent(txtnamaTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -141,36 +143,44 @@ public class addTeam extends javax.swing.JPanel {
                 .addGap(80, 80, 80)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(290, 290, 290)
+                .addComponent(txtInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(430, 430, 430)
+                .addComponent(buttonradius3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(jmlKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jmlKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(654, 654, 654)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(310, 310, 310)
-                .addComponent(buttonradius3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(650, 650, 650)
-                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(txtInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(684, 684, 684)
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(130, 130, 130)
-                .addComponent(txtnamaTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtnamaTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(380, 380, 380)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(684, 684, 684)
-                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(260, 260, 260)
+                .addComponent(txtInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(buttonradius3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jmlKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -182,12 +192,12 @@ public class addTeam extends javax.swing.JPanel {
     private void buttonradius2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius2ActionPerformed
         // TODO add your handling code here:
          if(check.isSelected()){
-           control.addTeam(comboCategory, txtnamaTeam, txtInformation, tabelKaryawan);
-        control.addTeamdetail(txtnamaTeam, tabelKaryawan, jmlKaryawan, comboCategory);
+             control.updateTeam(comboCategory, txtnamaTeam, txtInformation, tabelKaryawan);
+        control.updateTeamDetail(txtnamaTeam, tabelKaryawan, jmlKaryawan, comboCategory, txtInformation);
         }else{
             JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        
+       
     }//GEN-LAST:event_buttonradius2ActionPerformed
 
     private void buttonradius3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius3ActionPerformed
@@ -201,15 +211,15 @@ public class addTeam extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Component.buttonradius buttonradius2;
-    private Component.buttonradius buttonradius3;
-    private Component.JCheckBoxCustom check;
-    private Component.Combobox comboCategory;
+    public Component.buttonradius buttonradius2;
+    public Component.buttonradius buttonradius3;
+    public Component.JCheckBoxCustom check;
+    public Component.Combobox comboCategory;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jmlKaryawan;
-    private Component.Table tabelKaryawan;
-    private javax.swing.JTextField txtInformation;
-    private javax.swing.JTextField txtnamaTeam;
+    public javax.swing.JScrollPane jScrollPane2;
+    public Component.Spinner jmlKaryawan;
+    public Component.Table tabelKaryawan;
+    public javax.swing.JTextField txtInformation;
+    public javax.swing.JTextField txtnamaTeam;
     // End of variables declaration//GEN-END:variables
 }

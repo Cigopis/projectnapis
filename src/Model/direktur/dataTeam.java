@@ -7,8 +7,13 @@ package Model.direktur;
 import Controller.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -24,15 +29,21 @@ public class dataTeam extends javax.swing.JFrame {
     public dataTeam(teamController controller) {
         this.control = controller;
         initComponents();
+        control.headerTeam();
+        control.headerTeamdetail();
         control.tampilTeam(tabelTeam);
         control.tampilTeamdetail(tabelTeamdetail);
+        control.startTimer(tabelTeam, tabelTeamdetail);
     }
     public dataTeam(teamController controller, String username) {
         initComponents();
         this.user = username;
         this.control = controller;
+        control.headerTeam();
+        control.headerTeamdetail();
         control.tampilTeam(tabelTeam);
         control.tampilTeamdetail(tabelTeamdetail);
+        control.startTimer(tabelTeam, tabelTeamdetail);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,12 +71,13 @@ public class dataTeam extends javax.swing.JFrame {
         salary = new Component.buttonradius();
         buttonradius2 = new Component.buttonradius();
         karyawan = new Component.buttonradius();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelTeam = new Component.Table();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabelTeamdetail = new Component.Table();
         salaryrecap = new Component.buttonradius();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelTeamdetail = new Component.Table();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelTeam = new Component.Table();
+        cari = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,11 +87,21 @@ public class dataTeam extends javax.swing.JFrame {
         hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp edit.png"))); // NOI18N
         hapus1.setBorderColor(new java.awt.Color(127, 199, 217));
         hapus1.setColor(new java.awt.Color(127, 199, 217));
+        hapus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapus1ActionPerformed(evt);
+            }
+        });
 
         hapus.setBackground(new java.awt.Color(127, 199, 217));
         hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp delete.png"))); // NOI18N
         hapus.setBorderColor(new java.awt.Color(127, 199, 217));
         hapus.setColor(new java.awt.Color(127, 199, 217));
+        hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusActionPerformed(evt);
+            }
+        });
 
         tampil.setBackground(new java.awt.Color(127, 199, 217));
         tampil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/tp view.png"))); // NOI18N
@@ -125,6 +147,11 @@ public class dataTeam extends javax.swing.JFrame {
         finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
         finance.setBorderColor(new java.awt.Color(127, 199, 217));
         finance.setColor(new java.awt.Color(127, 199, 217));
+        finance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                financeActionPerformed(evt);
+            }
+        });
 
         dataclient.setBackground(new java.awt.Color(127, 199, 217));
         dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
@@ -191,18 +218,12 @@ public class dataTeam extends javax.swing.JFrame {
             }
         });
 
-        tabelTeam.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tabelTeam);
+        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
+        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
+        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
 
         tabelTeamdetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -217,12 +238,27 @@ public class dataTeam extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelTeamdetail);
 
-        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
-        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
-        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
-        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+        tabelTeam.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelTeam);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
+        cari.setBackground(new java.awt.Color(54, 84, 134));
+        cari.setForeground(new java.awt.Color(255, 255, 255));
+        cari.setBorder(null);
+        cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariKeyReleased(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Desktop - 9 (1).png"))); // NOI18N
 
@@ -242,10 +278,11 @@ public class dataTeam extends javax.swing.JFrame {
         DesktopPane.setLayer(salary, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(buttonradius2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(karyawan, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(salaryrecap, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(cari, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopPaneLayout = new javax.swing.GroupLayout(DesktopPane);
@@ -253,118 +290,131 @@ public class dataTeam extends javax.swing.JFrame {
         DesktopPaneLayout.setHorizontalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(250, 250, 250)
-                .addComponent(tambahteam, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(330, 330, 330)
-                .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(180, 180, 180)
-                .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(340, 340, 340)
-                .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265)
-                .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(260, 260, 260)
-                .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180)
+                .addComponent(tambahteam, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(1750, 1750, 1750)
                 .addComponent(rekapteam, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(860, 860, 860)
-                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(1000, 1000, 1000)
-                .addComponent(dataclient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(590, 590, 590)
+                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addComponent(jLabel2))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(590, 590, 590)
-                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1620, 1620, 1620)
+                .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1000, 1000, 1000)
+                .addComponent(dataclient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1210, 1210, 1210)
+                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1470, 1470, 1470)
+                .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(1140, 1140, 1140)
+                .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(830, 830, 830)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(720, 720, 720)
+                .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1)
         );
         DesktopPaneLayout.setVerticalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(120, 120, 120)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tambahteam, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
-                .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(770, 770, 770)
-                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(770, 770, 770)
-                .addComponent(hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(930, 930, 930)
+                .addGap(100, 100, 100)
                 .addComponent(rekapteam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(930, 930, 930)
-                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(930, 930, 930)
+                .addComponent(jLabel2))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(940, 940, 940)
                 .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(930, 930, 930)
-                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(940, 940, 940)
+                .addComponent(salaryrecap, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(rekapacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(930, 930, 930)
                 .addComponent(dataclient, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(930, 930, 930)
-                .addComponent(jLabel2))
+                .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(770, 770, 770)
+                .addComponent(tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DesktopPaneLayout.createSequentialGroup()
                 .addGap(930, 930, 930)
-                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(dataacara, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(rekapkeuangan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(930, 930, 930)
+                .addComponent(finance, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(770, 770, 770)
+                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(930, 930, 930)
+                .addComponent(karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DesktopPaneLayout.createSequentialGroup()
+                .addGap(930, 930, 930)
+                .addComponent(datateam, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1)
         );
 
@@ -478,6 +528,88 @@ try {
         dispose();
     }//GEN-LAST:event_salaryActionPerformed
 
+    private void hapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapus1ActionPerformed
+        // TODO add your handling code here:
+        int row = tabelTeam.getSelectedRow();
+if (row >= 0) {
+    JInternalFrame frame = new JInternalFrame("Ubah Karyawan", true, true, true, true);
+
+    // Frame the components into JInternalFrame
+     user="";
+    teamController control = new teamController();
+    updateTeam panel = new updateTeam(control,user);
+    panel.add(new JLabel("Ini adalah panel yang mengambang"));
+    // Populate text fields and combo box with data from selected row
+    panel.txtnamaTeam.setText(tabelTeam.getValueAt(row, 0).toString());
+    panel.comboCategory.setSelectedItem(tabelTeam.getValueAt(row, 2).toString());
+    panel.txtInformation.setText(tabelTeam.getValueAt(row, 1).toString());
+    
+    // Populate tabelKaryawan with data related to the selected team
+    control.setTabelteamupdate(tabelTeam, panel.tabelKaryawan,panel.jmlKaryawan);
+
+    frame.add(panel);
+
+    // Set the size of JInternalFrame (adjust as needed)
+    frame.setSize(657, 796);
+
+    // Center the internal frame on the screen
+   // Get screen size
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+int screenWidth = (int) screenSize.getWidth();
+int screenHeight = (int) screenSize.getHeight();
+
+// Calculate the x and y position to center the internal frame on the screen
+int x = (screenWidth - frame.getWidth()) / 2;
+int y = (screenHeight - frame.getHeight()) / 2;
+
+// Set the location of the internal frame
+frame.setLocation(x, y);
+
+    // Show JInternalFrame
+    frame.setVisible(true);
+
+    // Add the JInternalFrame to the JDesktopPane
+    DesktopPane.add(frame);
+
+    // Bring the JInternalFrame to the front
+    frame.toFront();
+
+    try {
+        frame.setSelected(true);
+    } catch (java.beans.PropertyVetoException e) {
+        System.out.println("Exception: " + e.getMessage());
+    }
+} else {
+    JOptionPane.showMessageDialog(null, "PILIH DATA DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
+}
+
+    }//GEN-LAST:event_hapus1ActionPerformed
+
+    private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
+        // TODO add your handling code here:
+        control.deleteTeam(tabelTeam, tabelTeamdetail);
+    }//GEN-LAST:event_hapusActionPerformed
+
+    private void financeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        graphicController financeControl = new graphicController();
+        reportFInance frame = new reportFInance(financeControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_financeActionPerformed
+
+    private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
+        // TODO add your handling code here:
+        if(cari.getText().equals("")){
+            control.tampilTeam(tabelTeam);
+            control.tampilTeamdetail(tabelTeamdetail);
+        }else{
+            control.cariTeam(tabelTeam, cari);
+            control.cariDetail(tabelTeamdetail, cari);
+        }
+    }//GEN-LAST:event_cariKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +652,7 @@ try {
     private javax.swing.JDesktopPane DesktopPane;
     private Component.buttonradius absensi;
     private Component.buttonradius buttonradius2;
+    private javax.swing.JTextField cari;
     private Component.buttonradius dataacara;
     private Component.buttonradius dataclient;
     private Component.buttonradius datateam;

@@ -18,7 +18,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
-              <Component id="txtnamaTeam" min="-2" pref="260" max="-2" attributes="0"/>
+              <Component id="jmlKaryawan" min="-2" pref="130" max="-2" attributes="0"/>
+              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <Component id="buttonradius3" min="-2" pref="130" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="230" pref="230" max="-2" attributes="0"/>
+              <Component id="check" min="-2" pref="190" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
+              <Component id="txtInformation" min="-2" pref="260" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
@@ -26,25 +36,15 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
-              <Component id="jmlKaryawan" min="-2" pref="130" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Component id="buttonradius3" min="-2" pref="130" max="-2" attributes="0"/>
+              <Component id="txtnamaTeam" min="-2" pref="260" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="490" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
-              <Component id="txtInformation" min="-2" pref="260" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
               <EmptySpace min="230" pref="230" max="-2" attributes="0"/>
               <Component id="buttonradius2" min="-2" pref="190" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="230" pref="230" max="-2" attributes="0"/>
-              <Component id="check" min="-2" max="-2" attributes="0"/>
           </Group>
           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
       </Group>
@@ -52,32 +52,36 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
-              <Component id="txtnamaTeam" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Component id="comboCategory" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="jmlKaryawan" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="buttonradius3" min="-2" pref="60" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="250" max="-2" attributes="0"/>
+              <EmptySpace min="320" pref="320" max="-2" attributes="0"/>
+              <Component id="jmlKaryawan" min="-2" pref="40" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="310" pref="310" max="-2" attributes="0"/>
+              <Component id="buttonradius3" min="-2" pref="60" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="650" pref="650" max="-2" attributes="0"/>
+              <Component id="check" min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="260" pref="260" max="-2" attributes="0"/>
               <Component id="txtInformation" min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="684" pref="684" max="-2" attributes="0"/>
-              <Component id="buttonradius2" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="190" pref="190" max="-2" attributes="0"/>
+              <Component id="comboCategory" min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="654" pref="654" max="-2" attributes="0"/>
-              <Component id="check" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
+              <Component id="txtnamaTeam" min="-2" pref="30" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="250" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="684" pref="684" max="-2" attributes="0"/>
+              <Component id="buttonradius2" min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
       </Group>
@@ -96,6 +100,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtInformation">
       <Properties>
@@ -109,6 +116,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="Component.buttonradius" name="buttonradius2">
       <Properties>
@@ -126,6 +136,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonradius2ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="Component.JCheckBoxCustom" name="check">
       <Properties>
@@ -146,6 +159,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtnamaTeam">
       <Properties>
@@ -162,6 +178,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnamaTeamActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="Component.buttonradius" name="buttonradius3">
       <Properties>
@@ -179,9 +198,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonradius3ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
@@ -202,6 +225,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JSpinner" name="jmlKaryawan">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

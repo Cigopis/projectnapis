@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Model.direktur;
+package Model.karyawan;
 
+import Model.direktur.*;
 import Controller.klienController;
 import java.awt.Font;
 import javax.swing.JOptionPane;

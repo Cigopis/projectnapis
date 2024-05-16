@@ -7,6 +7,7 @@ package Model.direktur;
 import Controller.teamController;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,12 +18,18 @@ public class updateTeam extends javax.swing.JPanel {
     /**
      * Creates new form addTeam
      */
-    private teamController control;
+    public teamController control;
+    private String user;
     public updateTeam(teamController controller) {
-        this.control = controller;
         initComponents();
+        control = controller;
         control.combox1(comboCategory);
-        control.headerTabel(tabelKaryawan);
+    }
+    public updateTeam(teamController controller,String username) {
+        initComponents();
+        control = controller;
+        user=username;
+        control.combox1(comboCategory);
     }
 
     /**
@@ -48,6 +55,8 @@ public class updateTeam extends javax.swing.JPanel {
         comboCategory.setBackground(new java.awt.Color(54, 84, 134));
         comboCategory.setBorder(null);
         comboCategory.setForeground(new java.awt.Color(255, 255, 255));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PILIH" }));
+        comboCategory.setLabeText("");
 
         txtInformation.setBackground(new java.awt.Color(54, 84, 134));
         txtInformation.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,6 +109,7 @@ public class updateTeam extends javax.swing.JPanel {
         jmlKaryawan.setForeground(new java.awt.Color(255, 255, 255));
         jmlKaryawan.setLabelText("");
 
+        tabelKaryawan.setAutoCreateRowSorter(true);
         tabelKaryawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -155,7 +165,9 @@ public class updateTeam extends javax.swing.JPanel {
                 .addComponent(buttonradius2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(130, 130, 130)
-                .addComponent(txtnamaTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtnamaTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(380, 380, 380)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,9 +181,6 @@ public class updateTeam extends javax.swing.JPanel {
                 .addGap(320, 320, 320)
                 .addComponent(jmlKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,8 +190,13 @@ public class updateTeam extends javax.swing.JPanel {
 
     private void buttonradius2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius2ActionPerformed
         // TODO add your handling code here:
-        control.updateTeam(comboCategory, txtnamaTeam, txtInformation, tabelKaryawan);
+         if(check.isSelected()){
+             control.updateTeam(comboCategory, txtnamaTeam, txtInformation, tabelKaryawan);
         control.updateTeamDetail(txtnamaTeam, tabelKaryawan, jmlKaryawan, comboCategory, txtInformation);
+        }else{
+            JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+       
     }//GEN-LAST:event_buttonradius2ActionPerformed
 
     private void buttonradius3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius3ActionPerformed
@@ -196,15 +210,15 @@ public class updateTeam extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Component.buttonradius buttonradius2;
-    private Component.buttonradius buttonradius3;
-    private Component.JCheckBoxCustom check;
-    private Component.Combobox comboCategory;
+    public Component.buttonradius buttonradius2;
+    public Component.buttonradius buttonradius3;
+    public Component.JCheckBoxCustom check;
+    public Component.Combobox comboCategory;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private Component.Spinner jmlKaryawan;
-    private Component.Table tabelKaryawan;
-    private javax.swing.JTextField txtInformation;
-    private javax.swing.JTextField txtnamaTeam;
+    public javax.swing.JScrollPane jScrollPane2;
+    public Component.Spinner jmlKaryawan;
+    public Component.Table tabelKaryawan;
+    public javax.swing.JTextField txtInformation;
+    public javax.swing.JTextField txtnamaTeam;
     // End of variables declaration//GEN-END:variables
 }

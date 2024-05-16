@@ -4,6 +4,8 @@
  */
 package Model.karyawan;
 
+import Controller.*;
+
 /**
  *
  * @author Yudo P
@@ -14,12 +16,16 @@ public class dashboardKaryawan extends javax.swing.JFrame {
      * Creates new form dashboardKaryawan
      */
     private String username;
+    private loginkarController controlLog;
+    private agendaController controlAgen;
     public dashboardKaryawan() {
         initComponents();
     }
-    public dashboardKaryawan(String user) {
+    public dashboardKaryawan(String user,loginkarController controlkar, agendaController controlagen) {
         initComponents();
         this.username = user;
+        this.controlLog = controlkar;
+        this.controlAgen = controlagen;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
       
     }

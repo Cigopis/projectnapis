@@ -7,6 +7,7 @@ package Model.karyawan;
 import Model.direktur.*;
 import Controller.klienController;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,22 +44,17 @@ public class addKlien extends javax.swing.JPanel {
         check = new Component.JCheckBoxCustom();
         jLabel1 = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         txtNameInstansi.setBackground(new java.awt.Color(54, 84, 134));
         txtNameInstansi.setForeground(new java.awt.Color(255, 255, 255));
         txtNameInstansi.setBorder(null);
-        add(txtNameInstansi, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 250, 20));
 
         txtNameClient.setBackground(new java.awt.Color(54, 84, 134));
         txtNameClient.setForeground(new java.awt.Color(255, 255, 255));
         txtNameClient.setBorder(null);
-        add(txtNameClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 250, 20));
 
         txtPossition.setBackground(new java.awt.Color(54, 84, 134));
         txtPossition.setForeground(new java.awt.Color(255, 255, 255));
         txtPossition.setBorder(null);
-        add(txtPossition, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 250, 20));
 
         txtEmail.setBackground(new java.awt.Color(54, 84, 134));
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,7 +64,6 @@ public class addKlien extends javax.swing.JPanel {
                 txtEmailActionPerformed(evt);
             }
         });
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 250, 20));
 
         areaAddress.setBackground(new java.awt.Color(54, 84, 134));
         areaAddress.setColumns(20);
@@ -76,12 +71,9 @@ public class addKlien extends javax.swing.JPanel {
         areaAddress.setRows(5);
         jScrollPane1.setViewportView(areaAddress);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 290, 80));
-
         txtContact.setBackground(new java.awt.Color(54, 84, 134));
         txtContact.setForeground(new java.awt.Color(255, 255, 255));
         txtContact.setBorder(null);
-        add(txtContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 502, 250, 30));
 
         buttonradius1.setText("ADD");
         buttonradius1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +81,6 @@ public class addKlien extends javax.swing.JPanel {
                 buttonradius1ActionPerformed(evt);
             }
         });
-        add(buttonradius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, 200, 40));
 
         check.setBackground(new java.awt.Color(222, 229, 228));
         check.setForeground(new java.awt.Color(54, 84, 134));
@@ -103,10 +94,65 @@ public class addKlien extends javax.swing.JPanel {
                 checkActionPerformed(evt);
             }
         });
-        add(check, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 640, 200, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Group 36.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Group 36 (1).png"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(txtPossition, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(txtNameInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(txtNameClient, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(txtPossition, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(330, 330, 330)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(txtNameInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(txtNameClient, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -115,7 +161,12 @@ public class addKlien extends javax.swing.JPanel {
 
     private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
         // TODO add your handling code here:
-        control.addKlien(txtNameInstansi, txtNameClient, txtPossition, areaAddress, txtEmail, txtContact);
+         if(check.isSelected()){
+           control.addKlien(txtNameInstansi, txtNameClient, txtPossition, areaAddress, txtEmail, txtContact);
+        }else{
+            JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_buttonradius1ActionPerformed
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed

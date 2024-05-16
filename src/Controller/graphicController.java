@@ -5,13 +5,19 @@
 package Controller;
 
 import Connection.connect;
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -30,6 +36,7 @@ import org.jfree.data.statistics.HistogramDataset;
  * @author Yudo P
  */
 public class graphicController {
+    private Timer timer;
     public void showPieChart(JPanel panelBarChart){
         
         //create dataset
@@ -61,7 +68,33 @@ public class graphicController {
     }
 
     /*=============================================================================*/
-    int jan,feb,mar,apr,mey,jun,jul,aug,sep,okt,nov,des,hari,bulan;
+    int jan,feb,mar,apr,mey,jun,jul,aug,sep,okt,nov,des,hari,bulan,hariout,bulanout,janout,febout,marout,aprout,meyout,junout,julout,augout,sepout,oktout,novout,desout;
+    public void startTimerIncome(final JPanel panelLineChart, final JTextField harian, final JTextField bulanan) {
+    timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            showLineChartIncome(panelLineChart);
+            harianIncome(harian);
+            bulananIncome(bulanan);
+        }
+    });
+    timer.start();
+}
+    public void startTimerOutcome(final JPanel panelLineChart) {
+    timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            showLineChartOutcome(panelLineChart);
+        }
+    });
+    timer.start();
+}
+
+    public void stopTimer() {
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+    }
     public void harianIncome(JTextField harian) {
     Connection conn = null;
     PreparedStatement ps = null;
@@ -104,7 +137,41 @@ public void lostFokus(JTextField hariin,JTextField bulanin, JTextField hariout, 
     bulanout.setFocusable(false);
 }
 
+ public void harianOutcome(JTextField harianout) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
+    try {
+        conn = connect.koneksiDb();
+        String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE DAY(date_expenses) = DAY(CURRENT_DATE)"; // Ambil total subtotal hanya untuk hari ini
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            hariout = rs.getInt("total");
+            String formattedHari = "Rp." + NumberFormat.getInstance().format(hariout); // Format jumlah menjadi mata uang
+            harianout.setText(formattedHari);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+    } finally {
+        // Tutup koneksi, statement, dan result set
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+}
 public void bulananIncome(JTextField bulanan) {
     Connection conn = null;
     PreparedStatement ps = null;
@@ -112,7 +179,7 @@ public void bulananIncome(JTextField bulanan) {
 
     try {
         conn = connect.koneksiDb();
-        String sql = "SELECT SUM(subtotal) AS total FROM finance_income WHERE MONTH(date_income) BETWEEN 1 AND 12"; // Tidak perlu ORDER BY atau LIMIT di sini
+        String sql = "SELECT SUM(subtotal) AS total FROM finance_income WHERE MONTH(date_income)=MONTH(CURRENT_DATE)"; // Tidak perlu ORDER BY atau LIMIT di sini
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
 
@@ -140,7 +207,41 @@ public void bulananIncome(JTextField bulanan) {
         }
     }
 }
+public void bulananOutcome(JTextField bulananout) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
+    try {
+        conn = connect.koneksiDb();
+        String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses)=MONTH(CURRENT_DATE)"; // Tidak perlu ORDER BY atau LIMIT di sini
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            bulanout = rs.getInt("total");
+            String bul = "Rp."+ NumberFormat.getInstance().format(bulanout);
+            bulananout.setText(bul);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+    } finally {
+        // Tutup koneksi, statement, dan result set
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+}
       public void januari() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -550,6 +651,415 @@ public void bulananIncome(JTextField bulanan) {
             }
         }
     }
+    public void januariout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "01"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                janout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      public void februariout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "02"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                febout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      public void maretout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "03"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                marout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      public void aprilout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "04"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                aprout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      
+      public void meyout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "05"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                meyout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      public void juniout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "06"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                junout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+      public void juliout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "07"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                julout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+    public void agustusout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "08"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                augout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+    public void septemberout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "09"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                sepout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+    public void oktoberout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "10"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                oktout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+    public void novemberout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "11"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                novout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
+    public void desemberout() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = connect.koneksiDb();
+            String sql = "SELECT SUM(subtotal) AS total FROM finance_expenses WHERE MONTH(date_expenses) = ? ORDER BY date_expenses DESC LIMIT 1";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "12"); // Gunakan "01" untuk bulan Januari
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                desout = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            // Tutup koneksi, statement, dan result set
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }
     public void showLineChartIncome(JPanel panelLineChart) {
         //create dataset for the graph
         januari();
@@ -601,19 +1111,31 @@ public void bulananIncome(JTextField bulanan) {
 
     public void showLineChartOutcome(JPanel panelLineChart) {
         //create dataset for the graph
+        januariout();
+        februariout();
+        maretout();
+        aprilout();
+        meyout();
+        juniout();
+        juliout();
+        agustusout();
+        septemberout();
+        oktoberout();
+        novemberout();
+        desemberout();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(200, "Amount", "Jan");
-        dataset.setValue(150, "Amount", "Feb");
-        dataset.setValue(18, "Amount", "Mar");
-        dataset.setValue(100, "Amount", "Apr");
-        dataset.setValue(80, "Amount", "May");
-        dataset.setValue(250, "Amount", "Jun");
-        dataset.setValue(200, "Amount", "Jul");
-        dataset.setValue(150, "Amount", "Aug");
-        dataset.setValue(18, "Amount", "Sep");
-        dataset.setValue(100, "Amount", "Oct");
-        dataset.setValue(80, "Amount", "Nov");
-        dataset.setValue(250, "Amount", "Dec");
+        dataset.setValue(janout, "Amount", "Jan");
+        dataset.setValue(febout, "Amount", "Feb");
+        dataset.setValue(marout, "Amount", "Mar");
+        dataset.setValue(aprout, "Amount", "Apr");
+        dataset.setValue(meyout, "Amount", "May");
+        dataset.setValue(junout, "Amount", "Jun");
+        dataset.setValue(julout, "Amount", "Jul");
+        dataset.setValue(augout, "Amount", "Aug");
+        dataset.setValue(sepout, "Amount", "Sep");
+        dataset.setValue(oktout, "Amount", "Oct");
+        dataset.setValue(novout, "Amount", "Nov");
+        dataset.setValue(desout, "Amount", "Dec");
 
         //create chart
         JFreeChart linechart = ChartFactory.createLineChart("Outcome Finance", "monthly", "amount",
@@ -688,8 +1210,31 @@ public void bulananIncome(JTextField bulanan) {
         jPanel1.removeAll();
         jPanel1.add(barpChartPanel, BorderLayout.CENTER);
         jPanel1.validate();
-        
-        
     }
-    
+    public void addOutcome(JTextArea keterangan, JTextField subtotal, JTextField totalbiaya, JDateChooser tgloutcome){
+        try {
+        // Establishing a database connection
+        Connection kon = connect.koneksiDb();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = String.valueOf(date.format(tgloutcome.getDate()));
+        // Creating a statement and prepared statement for SQL execution
+        Statement st = kon.createStatement(); 
+        PreparedStatement prs = kon.prepareStatement("INSERT INTO finance_expenses (information,subtotal,total,date_expenses) VALUES(?,?,?,?)");
+        
+        // Setting values for prepared statement parameters
+        prs.setString(1, keterangan.getText());
+        prs.setString(2, subtotal.getText());
+        prs.setString(3, totalbiaya.getText());
+        prs.setString(4, tanggal);
+        
+        // Executing the SQL query
+        prs.executeUpdate();
+        
+        // Showing success message if the data insertion is successful
+        JOptionPane.showMessageDialog(null, "Data Berhasil Di Masukan");
+    } catch (Exception e) {
+        // Showing error message if any exception occurs
+        JOptionPane.showMessageDialog(null, "Gagal" + e.getMessage());
+    }
+    }
 }

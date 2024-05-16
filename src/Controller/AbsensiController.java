@@ -22,7 +22,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class AbsensiController {
+public class AbsensiController{
     public static final String FILE_PATH = "C:\\Users\\Yudo P\\Documents\\absensi\\Absensi.xlsx";
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", new Locale("id"));
     public static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");

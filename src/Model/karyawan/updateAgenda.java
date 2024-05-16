@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Model.direktur;
+package Model.karyawan;
 
+import Model.direktur.*;
 import Controller.*;
 import java.awt.Font;
 import javax.swing.JOptionPane;
@@ -12,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author Yudo P
  */
-public class addAgenda extends javax.swing.JPanel {
+public class updateAgenda extends javax.swing.JPanel {
 
     /**
      * Creates new form addAgenda
      */
     private agendaController control;
-    public addAgenda(agendaController controller) {
+    public updateAgenda(agendaController controller) {
         initComponents();
         this.control = controller;
         control.combox1(comboCategory);
@@ -36,8 +37,8 @@ public class addAgenda extends javax.swing.JPanel {
     private void initComponents() {
 
         tgl_start = new com.toedter.calendar.JDateChooser();
-        txtSubharga = new Component.TextField();
         txtTotalbiaya = new Component.TextField();
+        txtSubharga = new Component.TextField();
         comboCategory = new Component.Combobox();
         jScrollPane1 = new javax.swing.JScrollPane();
         areaInformation = new javax.swing.JTextArea();
@@ -47,21 +48,22 @@ public class addAgenda extends javax.swing.JPanel {
         buttonradius1 = new Component.buttonradius();
         txtNameAcara = new Component.TextField();
         check = new Component.JCheckBoxCustom();
+        button1 = new Component.button();
         jLabel1 = new javax.swing.JLabel();
 
         tgl_start.setBackground(new java.awt.Color(54, 84, 134));
         tgl_start.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtSubharga.setBackground(new java.awt.Color(54, 84, 134));
-        txtSubharga.setForeground(new java.awt.Color(255, 255, 255));
-        txtSubharga.setLabelText("");
-
         txtTotalbiaya.setBackground(new java.awt.Color(54, 84, 134));
         txtTotalbiaya.setForeground(new java.awt.Color(255, 255, 255));
         txtTotalbiaya.setLabelText("");
-        txtTotalbiaya.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        txtSubharga.setBackground(new java.awt.Color(54, 84, 134));
+        txtSubharga.setForeground(new java.awt.Color(255, 255, 255));
+        txtSubharga.setLabelText("");
+        txtSubharga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTotalbiayaKeyReleased(evt);
+                txtSubhargaKeyReleased(evt);
             }
         });
 
@@ -118,126 +120,143 @@ public class addAgenda extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/addAgenda.png"))); // NOI18N
+        button1.setText("button1");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/updateAgenda.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(txtNameAcara, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
                 .addComponent(comboInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(tgl_start, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
-                .addComponent(tgl_end, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtNameAcara, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(297, 297, 297)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(comboTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(tgl_end, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(txtNameAcara, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(182, 182, 182)
                 .addComponent(comboInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addGap(168, 168, 168)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(tgl_start, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(tgl_end, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(90, 90, 90)
+                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(850, 850, 850)
                 .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(570, 570, 570)
+                .addGap(810, 810, 810)
+                .addComponent(check, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(640, 640, 640)
+                .addComponent(tgl_start, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(txtNameAcara, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
                 .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(322, 322, 322)
                 .addComponent(comboTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(710, 710, 710)
+                .addComponent(tgl_end, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
         // TODO add your handling code here:
+        String nomer = "KP-1.2/CV.MKN-18.1/IV/2024";
          if(check.isSelected()){
-        control.addAgenda(txtNameAcara, areaInformation, txtTotalbiaya, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
-        control.addFinance(txtNameAcara, areaInformation, txtTotalbiaya, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
-        control.simpanDataKeExcel(txtNameAcara, comboInstansi, areaInformation, tgl_end, txtSubharga, txtTotalbiaya);
+       control.updateAgenda(txtNameAcara, areaInformation, txtSubharga, tgl_end, tgl_end, comboTeam, comboInstansi, comboTeam);
+       control.updateFinance(txtNameAcara, areaInformation, txtSubharga, tgl_end, tgl_end);
         }else{
             JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_buttonradius1ActionPerformed
 
-    private void txtTotalbiayaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalbiayaKeyReleased
+    private void txtSubhargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSubhargaKeyReleased
         // TODO add your handling code here:
-        String total = txtTotalbiaya.getText();
-    int totharga = Integer.parseInt(total);
+        String sub = txtSubharga.getText();
+int subharga = Integer.parseInt(sub);
+double pajak = subharga * 0.11; // Menghitung pajak (11% dari subtotal)
+double totalharga = subharga + pajak; // Menambahkan pajak ke subtotal untuk mendapatkan total biaya
+txtTotalbiaya.setText(String.valueOf(totalharga));
 
-    // Menghitung pajak (11% dari total harga)
-    double pajak = totharga * 0.11;
-
-    // Mengurangkan pajak dari total harga untuk mendapatkan subharga
-    double subharga = totharga - pajak;
-
-    // Menampilkan subharga pada komponen GUI txtSubharga
-    txtSubharga.setText(String.valueOf(subharga));
-
-    // Menampilkan subharga pada komponen GUI txtSubharga
-    
-    }//GEN-LAST:event_txtTotalbiayaKeyReleased
+    }//GEN-LAST:event_txtSubhargaKeyReleased
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea areaInformation;
-    private Component.buttonradius buttonradius1;
+    public javax.swing.JTextArea areaInformation;
+    private Component.button button1;
+    public Component.buttonradius buttonradius1;
     private Component.JCheckBoxCustom check;
-    private Component.Combobox comboCategory;
-    private Component.Combobox comboInstansi;
-    private Component.Combobox comboTeam;
+    public Component.Combobox comboCategory;
+    public Component.Combobox comboInstansi;
+    public Component.Combobox comboTeam;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser tgl_end;
-    private com.toedter.calendar.JDateChooser tgl_start;
-    private Component.TextField txtNameAcara;
-    private Component.TextField txtSubharga;
-    private Component.TextField txtTotalbiaya;
+    public javax.swing.JScrollPane jScrollPane1;
+    public com.toedter.calendar.JDateChooser tgl_end;
+    public com.toedter.calendar.JDateChooser tgl_start;
+    public Component.TextField txtNameAcara;
+    public Component.TextField txtSubharga;
+    public Component.TextField txtTotalbiaya;
     // End of variables declaration//GEN-END:variables
 }

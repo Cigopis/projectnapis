@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Model.direktur;
+package Model.karyawan;
 
+import Model.direktur.*;
 import Controller.*;
 import java.awt.Font;
 import javax.swing.JOptionPane;
@@ -36,8 +37,8 @@ public class addAgenda extends javax.swing.JPanel {
     private void initComponents() {
 
         tgl_start = new com.toedter.calendar.JDateChooser();
-        txtSubharga = new Component.TextField();
         txtTotalbiaya = new Component.TextField();
+        txtSubharga = new Component.TextField();
         comboCategory = new Component.Combobox();
         jScrollPane1 = new javax.swing.JScrollPane();
         areaInformation = new javax.swing.JTextArea();
@@ -52,16 +53,16 @@ public class addAgenda extends javax.swing.JPanel {
         tgl_start.setBackground(new java.awt.Color(54, 84, 134));
         tgl_start.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtSubharga.setBackground(new java.awt.Color(54, 84, 134));
-        txtSubharga.setForeground(new java.awt.Color(255, 255, 255));
-        txtSubharga.setLabelText("");
-
         txtTotalbiaya.setBackground(new java.awt.Color(54, 84, 134));
         txtTotalbiaya.setForeground(new java.awt.Color(255, 255, 255));
         txtTotalbiaya.setLabelText("");
-        txtTotalbiaya.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        txtSubharga.setBackground(new java.awt.Color(54, 84, 134));
+        txtSubharga.setForeground(new java.awt.Color(255, 255, 255));
+        txtSubharga.setLabelText("");
+        txtSubharga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTotalbiayaKeyReleased(evt);
+                txtSubhargaKeyReleased(evt);
             }
         });
 
@@ -138,7 +139,7 @@ public class addAgenda extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
-                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(tgl_start, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +154,7 @@ public class addAgenda extends javax.swing.JPanel {
                 .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
-                .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(comboTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,7 +172,7 @@ public class addAgenda extends javax.swing.JPanel {
                 .addGap(99, 99, 99)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addComponent(tgl_start, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -182,7 +183,7 @@ public class addAgenda extends javax.swing.JPanel {
                 .addComponent(buttonradius1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(570, 570, 570)
-                .addComponent(txtSubharga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtTotalbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(322, 322, 322)
                 .addComponent(comboTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,9 +193,10 @@ public class addAgenda extends javax.swing.JPanel {
 
     private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
         // TODO add your handling code here:
+        String nomer = "KP-1.2/CV.MKN-18.1/IV/2024";
          if(check.isSelected()){
-        control.addAgenda(txtNameAcara, areaInformation, txtTotalbiaya, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
-        control.addFinance(txtNameAcara, areaInformation, txtTotalbiaya, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
+        control.addAgenda(txtNameAcara, areaInformation, txtSubharga, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
+        control.addFinance(txtNameAcara, areaInformation, txtSubharga, tgl_start, tgl_end, comboCategory, comboInstansi, comboTeam);
         control.simpanDataKeExcel(txtNameAcara, comboInstansi, areaInformation, tgl_end, txtSubharga, txtTotalbiaya);
         }else{
             JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -202,23 +204,15 @@ public class addAgenda extends javax.swing.JPanel {
         
     }//GEN-LAST:event_buttonradius1ActionPerformed
 
-    private void txtTotalbiayaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalbiayaKeyReleased
+    private void txtSubhargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSubhargaKeyReleased
         // TODO add your handling code here:
-        String total = txtTotalbiaya.getText();
-    int totharga = Integer.parseInt(total);
+        String sub = txtSubharga.getText();
+int subharga = Integer.parseInt(sub);
+double pajak = subharga * 0.11; // Menghitung pajak (11% dari subtotal)
+double totalharga = subharga + pajak; // Menambahkan pajak ke subtotal untuk mendapatkan total biaya
+txtTotalbiaya.setText(String.valueOf(totalharga));
 
-    // Menghitung pajak (11% dari total harga)
-    double pajak = totharga * 0.11;
-
-    // Mengurangkan pajak dari total harga untuk mendapatkan subharga
-    double subharga = totharga - pajak;
-
-    // Menampilkan subharga pada komponen GUI txtSubharga
-    txtSubharga.setText(String.valueOf(subharga));
-
-    // Menampilkan subharga pada komponen GUI txtSubharga
-    
-    }//GEN-LAST:event_txtTotalbiayaKeyReleased
+    }//GEN-LAST:event_txtSubhargaKeyReleased
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:

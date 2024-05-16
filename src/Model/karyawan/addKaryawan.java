@@ -6,6 +6,8 @@ package Model.karyawan;
 
 import Model.direktur.*;
 import Model.karyawan.*;
+import Model.direktur.*;
+import Model.karyawan.*;
 import Controller.karyawanController;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -59,6 +61,26 @@ public class addKaryawan extends javax.swing.JPanel {
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setLabelText("");
         txtEmail.setLineColor(new java.awt.Color(255, 255, 255));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
 
         comboJabatan.setBackground(new java.awt.Color(54, 84, 134));
         comboJabatan.setBorder(null);
@@ -228,6 +250,23 @@ public class addKaryawan extends javax.swing.JPanel {
         }
          
     }//GEN-LAST:event_buttonradius1ActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtEmailKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

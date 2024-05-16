@@ -5,6 +5,7 @@
 package Model.direktur;
 
 import Controller.*;
+import java.awt.Font;
 
 /**
  *
@@ -16,10 +17,25 @@ public class reportIncome extends javax.swing.JFrame {
      * Creates new form reportIncome
      */
     private graphicController control;
+    private String user;
     public reportIncome(graphicController controller) {
         initComponents();
         control = controller;
         control.showLineChartIncome(incomePanel);
+        control.harianIncome(incomeHarian);
+        control.bulananIncome(incomeBulanan);
+       control.startTimerIncome(incomePanel, incomeHarian, incomeBulanan);
+       control.lostFokus(incomeHarian, incomeBulanan, incomeHarian, incomeBulanan);
+    }
+    public reportIncome(graphicController controller,String username) {
+        initComponents();
+        control = controller;
+        user = username;
+        control.showLineChartIncome(incomePanel);
+        control.harianIncome(incomeHarian);
+        control.bulananIncome(incomeBulanan);
+       control.startTimerIncome(incomePanel, incomeHarian, incomeBulanan);
+       control.lostFokus(incomeHarian, incomeBulanan, incomeHarian, incomeBulanan);
     }
 
     /**
@@ -33,6 +49,20 @@ public class reportIncome extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         incomePanel = new javax.swing.JPanel();
+        incomeHarian = new javax.swing.JTextField();
+        incomeBulanan = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        incomeTable = new Component.Table();
+        karyawan = new Component.buttonradius();
+        buttonradius3 = new Component.buttonradius();
+        salary = new Component.buttonradius();
+        salaryrecap = new Component.buttonradius();
+        absensi = new Component.buttonradius();
+        datateam = new Component.buttonradius();
+        dataacara = new Component.buttonradius();
+        dataclient = new Component.buttonradius();
+        finance = new Component.buttonradius();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,6 +73,118 @@ public class reportIncome extends javax.swing.JFrame {
 
         incomePanel.setLayout(new java.awt.BorderLayout());
         jPanel1.add(incomePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 950, 340));
+
+        incomeHarian.setFont(new Font("Montserrat", Font.BOLD, 18));
+        incomeHarian.setForeground(new java.awt.Color(127, 199, 217));
+        incomeHarian.setBorder(null);
+        jPanel1.add(incomeHarian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 190, 640, 60));
+
+        incomeBulanan.setFont(new Font("Montserrat", Font.BOLD, 18));
+        incomeBulanan.setForeground(new java.awt.Color(127, 199, 217));
+        incomeBulanan.setBorder(null);
+        jPanel1.add(incomeBulanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 380, 640, 60));
+
+        incomeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(incomeTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 1680, 340));
+
+        karyawan.setBackground(new java.awt.Color(127, 199, 217));
+        karyawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan.png"))); // NOI18N
+        karyawan.setBorderColor(new java.awt.Color(127, 199, 217));
+        karyawan.setColor(new java.awt.Color(127, 199, 217));
+        karyawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                karyawanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, -1, -1));
+
+        buttonradius3.setBackground(new java.awt.Color(127, 199, 217));
+        buttonradius3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/karyawan recap.png"))); // NOI18N
+        buttonradius3.setBorderColor(new java.awt.Color(127, 199, 217));
+        buttonradius3.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(buttonradius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 910, -1, -1));
+
+        salary.setBackground(new java.awt.Color(220, 242, 241));
+        salary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary.png"))); // NOI18N
+        salary.setBorderColor(new java.awt.Color(220, 242, 241));
+        salary.setColor(new java.awt.Color(220, 242, 241));
+        salary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 920, -1, -1));
+
+        salaryrecap.setBackground(new java.awt.Color(220, 242, 241));
+        salaryrecap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salary recap.png"))); // NOI18N
+        salaryrecap.setBorderColor(new java.awt.Color(220, 242, 241));
+        salaryrecap.setColor(new java.awt.Color(220, 242, 241));
+        jPanel1.add(salaryrecap, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 920, -1, -1));
+
+        absensi.setBackground(new java.awt.Color(127, 199, 217));
+        absensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/absensi.png"))); // NOI18N
+        absensi.setBorderColor(new java.awt.Color(127, 199, 217));
+        absensi.setColor(new java.awt.Color(127, 199, 217));
+        absensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                absensiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(absensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 930, -1, -1));
+
+        datateam.setBackground(new java.awt.Color(127, 199, 217));
+        datateam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data team.png"))); // NOI18N
+        datateam.setBorderColor(new java.awt.Color(127, 199, 217));
+        datateam.setColor(new java.awt.Color(127, 199, 217));
+        datateam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datateamActionPerformed(evt);
+            }
+        });
+        jPanel1.add(datateam, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 920, -1, -1));
+
+        dataacara.setBackground(new java.awt.Color(127, 199, 217));
+        dataacara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data acara.png"))); // NOI18N
+        dataacara.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataacara.setColor(new java.awt.Color(127, 199, 217));
+        dataacara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataacaraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dataacara, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 920, -1, -1));
+
+        dataclient.setBackground(new java.awt.Color(127, 199, 217));
+        dataclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/data client.png"))); // NOI18N
+        dataclient.setBorderColor(new java.awt.Color(127, 199, 217));
+        dataclient.setColor(new java.awt.Color(127, 199, 217));
+        dataclient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataclientActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dataclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 920, -1, -1));
+
+        finance.setBackground(new java.awt.Color(127, 199, 217));
+        finance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finance.png"))); // NOI18N
+        finance.setBorderColor(new java.awt.Color(127, 199, 217));
+        finance.setColor(new java.awt.Color(127, 199, 217));
+        jPanel1.add(finance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 920, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/bg salary.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 910, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Desktop - 17.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -64,6 +206,60 @@ public class reportIncome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void karyawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karyawanActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        karyawanController karControl = new karyawanController();
+        dataKaryawan frame = new dataKaryawan(karControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_karyawanActionPerformed
+
+    private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
+        // TODO add your handling code here:
+        user="";
+        salaryController salaryControl = new salaryController();
+        salaryKaryawan frame = new salaryKaryawan(salaryControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_salaryActionPerformed
+
+    private void absensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absensiActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        AbsensiController absenControl = new AbsensiController();
+        absensiKaryawan frame = new absensiKaryawan(absenControl);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_absensiActionPerformed
+
+    private void datateamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datateamActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        teamController teamControl = new teamController();
+        dataTeam frame = new dataTeam(teamControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_datateamActionPerformed
+
+    private void dataacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataacaraActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        agendaController agenControl = new agendaController();
+        dataAgenda frame = new dataAgenda(agenControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataacaraActionPerformed
+
+    private void dataclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataclientActionPerformed
+        // TODO add your handling code here:
+        user = "";
+        klienController klienControl = new klienController();
+        dataKlien frame = new dataKlien(klienControl,user);
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dataclientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,8 +299,22 @@ public class reportIncome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Component.buttonradius absensi;
+    private Component.buttonradius buttonradius3;
+    private Component.buttonradius dataacara;
+    private Component.buttonradius dataclient;
+    private Component.buttonradius datateam;
+    private Component.buttonradius finance;
+    private javax.swing.JTextField incomeBulanan;
+    private javax.swing.JTextField incomeHarian;
     private javax.swing.JPanel incomePanel;
+    private Component.Table incomeTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private Component.buttonradius karyawan;
+    private Component.buttonradius salary;
+    private Component.buttonradius salaryrecap;
     // End of variables declaration//GEN-END:variables
 }

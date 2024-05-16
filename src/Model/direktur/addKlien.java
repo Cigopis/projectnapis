@@ -6,6 +6,7 @@ package Model.direktur;
 
 import Controller.klienController;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -159,7 +160,12 @@ public class addKlien extends javax.swing.JPanel {
 
     private void buttonradius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonradius1ActionPerformed
         // TODO add your handling code here:
-        control.addKlien(txtNameInstansi, txtNameClient, txtPossition, areaAddress, txtEmail, txtContact);
+         if(check.isSelected()){
+           control.addKlien(txtNameInstansi, txtNameClient, txtPossition, areaAddress, txtEmail, txtContact);
+        }else{
+            JOptionPane.showMessageDialog(null, "CHECKLIST DAHULU !", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_buttonradius1ActionPerformed
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed

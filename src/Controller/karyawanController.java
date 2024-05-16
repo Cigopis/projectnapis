@@ -17,9 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class karyawanController {
     private String gender;
     private Timer timer;
-    public karyawanController() {
-
-    }
+    
 
     public void add(JTextField norfid, JTextField txtNoktp, JTextField txtName, JDateChooser tgl_birth, JRadioButton L, JRadioButton P, JTextField txtEmail, JTextField txtContact, JComboBox<String> comboPosition,JTable tabelKaryawan) {
         if (L.isSelected()) {
@@ -83,6 +81,53 @@ public class karyawanController {
             tabel.removeRow(0);
         }
     String query = "SELECT norfid,noktp, name, birthday, gender, email, contact, possition FROM karyawan ORDER BY id_karyawan ASC";
+
+    try {
+        Connection conn = connect.koneksiDb(); // Memanggil koneksi
+        Statement sttmnt = conn.createStatement(); // Membuat statement
+        ResultSet rslt = sttmnt.executeQuery(query); // Menjalankan query
+
+        int no = 1; // Inisialisasi nomor baris
+        while (rslt.next()) {
+            // Menampung data sementara
+            String d1 = rslt.getString(1);
+            String d2 = rslt.getString(2);
+            String d3 = rslt.getString(3);
+            String d4 = rslt.getString(4);
+            String gender;
+            
+            String d5 = rslt.getString(5);
+            if (d5.equals("L")) {
+                gender = "Laki-Laki";
+            } else if (d5.equals("P")) {
+                gender = "Perempuan";
+            } else {
+                gender = "Undefined";
+            }
+            String d6 = rslt.getString(6);
+            String d7 = rslt.getString(7);
+             String d8 = rslt.getString(8);
+
+            // Menambahkan nomor baris ke data
+            // Menambahkan semua data ke dalam array
+            String[] data = {d1, d2, d3, d4, gender, d6, d7, d8};
+            // Menambahkan baris sesuai dengan data yang tersimpan di array
+            tabel.addRow(data);
+        }
+    } catch (Exception e) {
+        System.out.println("Error while populating table: " + e.getMessage());
+    }
+    
+}
+    public void cari(JTable tabelKaryawan,JTextField cari) {
+    // Mengatur model tabel
+    
+    // Mengosongkan tabel sebelum menambahkan data baru
+    int row = tabelKaryawan.getRowCount();
+        for(int a = 0 ; a < row ; a++){
+            tabel.removeRow(0);
+        }
+    String query = "SELECT norfid,noktp, name, birthday, gender, email, contact, possition FROM karyawan WHERE name ='"+cari.getText()+"' OR noktp='"+cari.getText()+"'";
 
     try {
         Connection conn = connect.koneksiDb(); // Memanggil koneksi

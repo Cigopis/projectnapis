@@ -33,7 +33,6 @@ public class absensiKaryawan extends javax.swing.JFrame {
      * Creates new form absensiKaryawan
      */
     private AbsensiController control;
-    private String user;
     public absensiKaryawan(AbsensiController controller) {
         this.control = controller; // Assign the provided controller instance
         initComponents();
@@ -41,6 +40,8 @@ public class absensiKaryawan extends javax.swing.JFrame {
         control.startTimer(tglnow, timenow);
         control.focuableField(name, nik, jabatan, jamabsen, status);
     }
+    
+    private String user;
     public absensiKaryawan(AbsensiController controller, String username) {
         this.control = controller; // Assign the provided controller instance
         initComponents();
